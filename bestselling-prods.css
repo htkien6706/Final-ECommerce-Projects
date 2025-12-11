@@ -1,0 +1,23 @@
+.products-info{
+        margin-left: 50px;
+      }
+
+      .best-selling-products {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 15px;
+        overflow-x: scroll; /* tạm thời cứ để như này đã rồi sau tự customize cái scroll button thay vì phải dùng button của trình duyệt*/
+      }
+
+      .best-selling-products li{
+        list-style-type: none;
+        cursor:pointer;
+        transition: 0.5s ease-out;
+      }
+
+      .best-selling-products li:hover{
+        cursor:pointer;
+        transform:scale(1.05) translateY(-5px);
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }

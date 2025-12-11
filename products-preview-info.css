@@ -1,0 +1,126 @@
+.all-products li{
+        list-style-type:none;
+      }
+
+      /*after reviewing and searching for the answer a lot of time, For me, it's pretty simple - use flex when you're dealing with one-dimensional layout and grid when you're dealing with two dimensions*/
+      .all-products{
+        display:grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-right: 100px;
+      }
+
+      .preview-div{
+        position: relative;
+      }
+      .preview-image{
+        width: 100%;
+      }
+
+      #preview-image-overlay{
+        visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 99%;
+        background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+        z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+        cursor: pointer; /* Add a pointer on hover */
+      }
+
+      .crude-options-button{
+        border-radius:5px;
+        position: absolute;
+        right:0;
+        bottom:1px;
+        width: 30px;
+        height: 30px;
+        border: none;
+        font-size: 20px;
+        cursor:pointer;
+        z-index: 3;
+        visibility: visible;
+        transition: 0.3s ease-in
+      }
+
+      .crude-options-button:hover{
+        transform: scale(1.06) translate(0px, 1px);
+        box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+        z-index: 3;
+      }
+
+      .concrete-options {
+        position: absolute;
+        bottom: 40px;
+        right: 0;
+        background: white;
+        border-radius: 12px;
+        padding: 8px 0px 8px 0px;
+        width: 160px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        z-index: 10;
+        animation:fadeIn 0.2s ease-in;
+        visibility:hidden;
+      }
+
+      @keyframes fadeIn{
+        from{opacity:0; transform:scale(0.95)};
+        to{opacity:1; transfrom: scale(1)};
+      }
+
+      .options-button{
+        padding:10px
+      }
+
+      .options-button:hover{
+        background: #f5f5f5;
+      }
+
+      .delete-button {
+        color: #d60000;
+        font-weight: 500;
+      }
+
+      .delete-button:hover {
+        background: #ffeaea;
+      }
+
+      .card-items{
+        margin-bottom: 10px;
+        cursor:pointer;
+        transition: 0.3s ease-in-out;
+        border-radius: 0px 0px 10px 10px;
+      }
+
+      .card-items:hover{
+        cursor:pointer;
+        transform:scale(1.1) translate(-5px, -5px);
+        box-shadow: 
+          0 14px 28px rgba(0, 0, 0, 0.25),
+          0 10px 10px rgba(0, 0, 0, 0.22);
+      }
+
+
+      #original-price{
+        color:red;
+        margin-right: 5px;
+        text-decoration:line-through;
+        font-weight: 550;
+      }
+
+      #discount-price{
+        color:#aaa;
+        font-weight: 600;
+      }
+
+      .product-description{
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 20px;
+        max-width: 350px;
+        margin-left: 5px;
+      }
+
+      .card-items{
+        border: 1px solid #ccc;
+      }

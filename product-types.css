@@ -1,0 +1,24 @@
+.categories-list {
+        list-style-type: none;
+        display: flex;
+        flex-direction: row;
+        justify-content:center;
+        gap: 30px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+      }
+
+      .categories-list li {
+        display: inline-block;
+        transition: transform 0.3s ease, padding 0.3s ease,
+          border-bottom-color 0.3s ease, border-bottom-width 0.3s ease;
+        cursor: pointer;
+      }
+
+      .categories-list li:hover {
+        transform: translate(-5px, -5px);
+        padding-bottom: 10px;
+        border-bottom: 1px solid black;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        color: green;
+      }

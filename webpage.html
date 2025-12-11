@@ -5,253 +5,38 @@
     <link rel="icon" type="image/jpg" href="image/favicon.jpg" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="welcome-words.css">
+    <link rel="stylesheet" href="product-types.css">
+    <link rel="stylesheet" href="bestselling-prods.css">
+    <link rel="stylesheet" href="products-preview-info.css">
     <style>
-      .web-header {
-        margin-top: 20px;
-        height: 60px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: nowrap;
-      }
-
-      .shipping {
-        padding-left: 50px
-      }
-
-      .shipping-details {
-        margin-left: 2px;
-        color: green;
-        font-size: 20px;
-        text-decoration: underline;
-      }
-
-      .shipping-details:hover {
-        cursor: pointer;
-      }
-
-      .web-name {
-        width: 300px;
-        cursor: pointer;
-      }
-
-      #web-image {
-        /* set image fit into the div */
-        max-width: 100%;
-        max-height: 100%;
-      }
-
-      #search-input {
-        background-image: url("image/search-icon.jpg");
-        background-position: left;
-        background-size: 20px 20px;
-        background-repeat: no-repeat;
-        width: 300px;
-        height: 40px;
-        padding-left: 20px;
-        padding-right: 10px;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-      }
-
-      .searchbar-and-users {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-      }
-
-      #user-image {
-        /* set image fit into the div */
-        max-width: 100%;
-        max-height: 100%;
-        cursor: pointer;
-      }
-
-      .user-bag {
-        height: 60px;
-      }
-
-      #user-cart {
-        max-width: 100%;
-        max-height: 100%;
-        cursor: pointer;
-      }
-
-      hr {
-        height: 1px;
-        color: #ccc;
-        background: #ccc;
-        font-size: 0;
-        border: 0;
-      }
-
-      .welcome-words {
-        height: 35px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 600;
-      }
-
-      .categories-list {
-        list-style-type: none;
-        display: flex;
-        flex-direction: row;
-        justify-content:center;
-        gap: 30px;
-        flex-wrap: wrap;
-      }
-
-      .categories-list li {
-        display: inline-block;
-        transition: transform 0.3s ease, padding 0.3s ease,
-          border-bottom-color 0.3s ease, border-bottom-width 0.3s ease;
-        cursor: pointer;
-      }
-
-      .categories-list li:hover {
-        transform: translate(-5px, -5px);
-        padding-bottom: 10px;
-        border-bottom: 1px solid black;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-      }
-
-      .products-info{
-        margin-left: 50px;
-      }
-
-      .best-selling-products {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        gap: 15px;
-        overflow-x: scroll; /* tạm thời cứ để như này đã rồi sau tự customize cái scroll button thay vì phải dùng button của trình duyệt*/
-      }
-
-      .best-selling-products li{
-        list-style-type: none;
-        cursor:pointer;
-        transition: 0.5s ease-out;
-      }
-
-      .best-selling-products li:hover{
-        cursor:pointer;
-        transform:scale(1.05) translateY(-5px);
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-      }
-
-      .all-products li{
-        list-style-type:none;
-      }
-
-      /*after reviewing and searching for the answer a lot of time, For me, it's pretty simple - use flex when you're dealing with one-dimensional layout and grid when you're dealing with two dimensions*/
-      .all-products{
-        display:grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-        margin-right: 100px;
-      }
-
-      .preview-image{
-        width: 100%;
-      }
-
-      .card-items{
-        margin-bottom: 10px;
-        cursor:pointer;
-        transition: 0.3s ease-in-out;
-        border-radius: 0px 0px 10px 10px;
-      }
-
-      .card-items:hover{
-        cursor:pointer;
-        transform:scale(1.1) translate(-5px, -5px);
-        box-shadow: 
-          0 14px 28px rgba(0, 0, 0, 0.25),
-          0 10px 10px rgba(0, 0, 0, 0.22);
-      }
-
-
-      #original-price{
-        color:red;
-        margin-right: 5px;
-        text-decoration:line-through;
-        font-weight: 550;
-      }
-
-      #discount-price{
-        color:#aaa;
-        font-weight: 600;
-      }
-
-      .product-description{
-        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        font-size: 20px;
-        max-width: 350px;
-        margin-left: 5px;
-      }
-
-      .card-items{
-        border: 1px solid #ccc;
-      }
-
+      
     </style>
   </head>
   <body>
-    <div class="web-header">
-      <div class="shipping">
-        Free Shiping orders > 150$
-        <span class="shipping-details"> Details</span>
+    <div class="web-header"></div>
+
+      <hr />
+
+      <div class="welcome-words">
+        Celebrate Vietnam’s heritage with our latest Graphic Tee drop: inspired
+        by Saigon, Hanoi, and Hoi An, reimagined for the street.
       </div>
 
-      <div class="web-name" style="display: flex; align-items: center">
-        <img id="web-image" src="image/web-name.png" />
-      </div>
-      <div class="searchbar-and-users">
-        <input
-          type="text"
-          id="search-input"
-          placeholder="Search for items....."
-        />
-        <div class="user-account" style="height: 60px">
-          <img
-            id="user-image"
-            src="image/user-icon.jpg"
-            alt="user-icon image"
-          />
-        </div>
-        <div class="user-bag">
-          <img
-            id="user-cart"
-            src="image/cart-icon.jpg"
-            alt="image of user's cart"
-          />
-        </div>
-      </div>
-    </div>
+      <hr />
 
-    <hr />
-
-    <div class="welcome-words">
-      Celebrate Vietnam’s heritage with our latest Graphic Tee drop: inspired by
-      Saigon, Hanoi, and Hoi An, reimagined for the street.
-    </div>
-
-    <hr />
-
-    <ul class="categories-list">
-      <li>NEWEST</li>
-      <li>WOMAN</li>
-      <li>MAN</li>
-      <li>SWEATER</li>
-      <li>SHIRT</li>
-      <li>FOOTBALL</li>
-      <li>BASKETBALL</li>
-      <li>GIFT FOR GIRLFRIEND</li>
-    </ul>
+      <ul class="categories-list">
+        <li>NEWEST</li>
+        <li>WOMAN</li>
+        <li>MAN</li>
+        <li>SWEATER</li>
+        <li>SHIRT</li>
+        <li>FOOTBALL</li>
+        <li>BASKETBALL</li>
+        <li>GIFT FOR GIRLFRIEND</li>
+      </ul>
+    
 
     <div class="brief-intro-image">
       <img
@@ -289,140 +74,15 @@
 
       <p style="font-weight: 550; font-size: 30px; margin-top: 50px;"> Men's Shirts, Sweeters, Tees & Polos</p>
 
-
+      <!-- thay vì mỗi sản phẩm lại phải copy paste xuống thì sẽ tốn rất nhiều khi mà cái projects nó scale lên
+       -> nên 10k sản phẩm mà cứ copy paste xong mỗi thông tin sản phẩm lại một file html thì gần như là bất lực
+       ->phải dùng cách thay thế đó chính là sử dụng objects, đúng đẳng cấp Kiên Hoàng research ra được cái này đúng đẳng cấp hahahahahah -->
       <ul class="all-products">
-        <li class="card-items">
-          <div class="preview-div">
-            <img class="preview-image" src="image/preview-image-1.webp" alt="picture of a man with a shirt">
-          </div>
-
-          <div class="product-description">
-            <p>Turtleneck Everyday Performance Merino Wool Sweater</p>
-            <p><span id="original-price">$78.00</span> <span id="discount-price">$45.00</span></p>
-          </div>
-        </li>
-
-        <li class="card-items">
-          <div class="preview-div">
-            <img class="preview-image" src="image/preview-image-2.avif" alt="picture of a man with a shirt">
-          </div>
-
-          <div class="product-description">
-            <p>Crew Neck Everyday Performance Merino Wool Sweater</p>
-            <p><span id="original-price">$78.00</span> <span id="discount-price">$45.00</span></p>
-          </div>
-        </li>
-
-        <li class="card-items">
-          <div class="preview-div">
-            <img class="preview-image" src="image/preview-image-3.avif" alt="picture of a man with a shirt">
-          </div>
-
-          <div class="product-description">
-            <p>Slim Solid Wrinkle-Resistant Everyday Performance Dress Shirt.</p>
-            <p><span id="original-price">$78.00</span> <span id="discount-price">$45.00</span></p>
-          </div>
-        </li>
-
-        <li class="card-items">
-          <div class="preview-div">
-            <img class="preview-image" src="image/preview-image-4.avif" alt="picture of a man with a shirt">
-          </div>
-
-          <div class="product-description">
-            <p>Perfect Pima Cotton Crew Neck T-Shirt.</p>
-            <p><span id="original-price">$78.00</span> <span id="discount-price">$45.00</span></p>
-          </div>
-        </li>
-        
-        <li class="card-items">
-          <div class="preview-div">
-            <img class="preview-image" src="image/preview-image-5.avif" alt="picture of a man with a shirt">
-          </div>
-
-          <div class="product-description">
-            <p>Slim Solid Cotton Stretch 1MX Dress Shirt.</p>
-            <p><span id="original-price">$78.00</span> <span id="discount-price">$45.00</span></p>
-          </div>
-        </li>
-        
-        <li class="card-items">
-          <div class="preview-div">
-            <img class="preview-image" src="image/preview-image-6.avif" alt="picture of a man with a shirt">
-          </div>
-
-          <div class="product-description">
-            <p>Relaxed Fleece Hoodie.</p>
-            <p><span id="original-price">$78.00</span> <span id="discount-price">$45.00</span></p>
-          </div>
-        </li>
-
-        <li class="card-items">
-          <div class="preview-div">
-            <img class="preview-image" src="image/preview-image-7.avif" alt="picture of a man with a shirt">
-          </div>
-
-          <div class="product-description">
-            <p>Cable Knit Crew Neck Sweater.</p>
-            <p><span id="original-price">$78.00</span> <span id="discount-price">$45.00</span></p>
-          </div>
-        </li>
-
-        <li class="card-items">
-          <div class="preview-div">
-            <img class="preview-image" src="image/preview-image-8.avif" alt="picture of a man with a shirt">
-          </div>
-
-          <div class="product-description">
-            <p>X-Logo Perfect Pima Cotton Pique Polo.</p>
-            <p><span id="original-price">$78.00</span> <span id="discount-price">$45.00</span></p>
-          </div>
-        </li>
-
-        <li class="card-items">
-          <div class="preview-div">
-            <img class="preview-image" src="image/preview-image-9.avif" alt="picture of a man with a shirt">
-          </div>
-
-          <div class="product-description">
-            <p>Felted Mock Neck Sweater.</p>
-            <p><span id="original-price">$78.00</span> <span id="discount-price">$45.00</span></p>
-          </div>
-        </li>
-
-        <li class="card-items">
-          <div class="preview-div">
-            <img class="preview-image" src="image/preview-image-10.avif" alt="picture of a man with a shirt">
-          </div>
-
-          <div class="product-description">
-            <p>Modern Prep Short Sleeve Sweater Polo.</p>
-            <p><span id="original-price">$78.00</span> <span id="discount-price">$45.00</span></p>
-          </div>
-        </li>
-
-        <li class="card-items">
-          <div class="preview-div">
-            <img class="preview-image" src="image/preview-image-11.avif" alt="picture of a man with a shirt">
-          </div>
-
-          <div class="product-description">
-            <p>Fleece Quarter Zip Sweatshirt.</p>
-            <p><span id="original-price">$78.00</span> <span id="discount-price">$45.00</span></p>
-          </div>
-        </li>
-
-        <li class="card-items">
-          <div class="preview-div">
-            <img class="preview-image" src="image/preview-image-12.avif" alt="picture of a man with a shirt">
-          </div>
-
-          <div class="product-description">
-            <p>Quarter Zip Everyday Performance Merino Wool Sweater.</p>
-            <p><span id="original-price">$78.00</span> <span id="discount-price">$45.00</span></p>
-          </div>
-        </li>
       </ul>
     </div>
   </body>
+
+  <script src="render-products.js" defer></script>
+  <script src="render-header.js" defer></script>
+
 </html>
