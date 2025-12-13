@@ -26,6 +26,7 @@
       .web-name {
         width: 300px;
         cursor: pointer;
+        margin-left: 100px;
       }
 
       #web-image {
@@ -39,7 +40,7 @@
         background-position: left;
         background-size: 20px 20px;
         background-repeat: no-repeat;
-        width: 300px;
+        width: 150px;
         height: 40px;
         padding-left: 20px;
         padding-right: 10px;

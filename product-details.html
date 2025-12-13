@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="header.css">
+        <link rel="stylesheet" href="welcome-words.css">
+        <link rel="stylesheet" href="product-types.css">
+
+        <style>
+            .body-container{
+                display:flex;
+                flex-wrap: wrap;
+                flex-direction: row;
+                gap: 45px;
+                margin-top: 60px;
+                flex: 0 1 auto;
+                padding: 0px 40px;
+            }
+            .product-image{
+
+                display:flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                margin: auto;
+                gap: 10px;
+                flex: 0 1 auto;
+                align-items: center;
+            }
+
+            .product-info {
+    flex: 1 1 auto;       /* ← Cho phép co giãn */
+    min-width: 300px;     /* ← KHÔNG được nhỏ hơn 300px */
+    max-width: 500px;     /* ← KHÔNG được to hơn 500px */
+}
+
+            .slide-show{
+                display:flex;
+                flex-direction: column;
+            }
+
+            .small-image-div{
+                width: 85px;
+            }
+
+            .small-image-img{
+                width: 100%;
+            }
+
+            .main-image{
+                width: 450px;
+            }
+
+            .main-image-img{
+                width: 100%;
+            }
+
+            @media (max-width: 768px) {
+            .product-image {
+                flex-direction: column; 
+                align-items: center;    
+            }
+
+            .slide-show {
+                flex-direction: row;
+                gap: 10px;
+            }
+
+            .small-image-div {
+                width: 60px; 
+            }
+
+            .main-image {
+                width: 100%;  
+                max-width: 450px;
+            }
+
+            }
+
+            .product-name{
+                font-weight: 600;
+                font-size: 25px;
+            }
+
+            .new-price{
+                font-size: 32px;
+                font-weight: 700;
+                color: #e74c3c;
+                margin-right: 18px;
+            }
+
+            .old-price{
+                font-size: 27px;
+                color: #999;
+                text-decoration: line-through;
+            }
+
+            .utility-buttons{
+                display:flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .add-button{
+                background:black;
+                color:white;
+                width: 200px;
+                height: 50px;
+                border-radius: 12px;
+                font-size: 16px;
+                cursor:pointer;
+            }
+
+            .buy-button{
+                background:green;
+                color:white;
+                width: 200px;
+                border-radius:12px;
+                font-size: 16px;
+                cursor:pointer
+            }
+
+            .add-button:hover{
+                background:#a855f7;
+                transform: scale(1.05);
+                transition:0.3s ease-in-out;
+            }
+
+            .buy-button:hover{
+                background:#34d399;
+                transform: scale(1.05);
+                transition:0.15s ease-in;
+            }
+
+            
+            
+
+
+            
+
+
+        </style>
+    </head>
+    <body>
+        <div class="header-container"></div>
+        <div class="body-container">
+            <div class="product-image">
+                <div class="slide-show">
+                    <button class="upward-button">⇧</button>
+                    <div class="small-image-div">
+                        <img class="small-image-img" src="image/product-1/preview-image-1.1.avif">
+                    </div>
+
+                    <div class="small-image-div">
+                        <img class="small-image-img" src="image/product-1/preview-image-1.2.avif">
+                    </div>
+
+                    <div class="small-image-div">
+                        <img class="small-image-img" src="image/product-1/preview-image-1.3.avif">
+                    </div>
+
+                    <div class="small-image-div">
+                        <img class="small-image-img" src="image/product-1/preview-image-1.4.avif">
+                    </div>
+
+                    <div class="small-image-div">
+                        <img class="small-image-img" src="image/product-1/preview-image-1.5.avif">
+                    </div>
+                   
+                    <button class="downward-button">⇩</button>
+
+                </div>
+                <div class="main-image">
+                    <img class="main-image-img" src="image/product-1/preview-image-1.1.avif">
+                </div>
+            </div>
+            
+            <div class="product-info">
+                <p class="product-name"> Heritage Cable Knit Turtleneck Sweater </p>
+                <div class="price-container">
+                    <span class="new-price"> $105</span>
+                    <span class="old-price">$125</span>
+                </div>
+
+                <div class="description">
+                    <div class="description">
+                    <h3>Description</h3>
+                    <p>Elevate your winter wardrobe with our Heritage Cable Knit Turtleneck Sweater. Crafted from premium quality yarn, this timeless piece combines classic elegance with modern comfort.</p>
+                    <p>Perfect for layering or wearing on its own, this sweater features intricate cable knit patterns that add texture and visual interest to any outfit.</p>
+                </div>
+
+                <div class="utility-buttons">
+                    <button class="add-button"> Add to Cart</button>
+                    <button class="buy-button"> Buy it now !</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="render-header.js" defer> </script>
+</html>

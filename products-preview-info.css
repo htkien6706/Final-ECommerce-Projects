@@ -29,7 +29,7 @@
         cursor: pointer; /* Add a pointer on hover */
       }
 
-      .crude-options-button{
+      .crud-options-button{
         border-radius:5px;
         position: absolute;
         right:0;
@@ -44,7 +44,7 @@
         transition: 0.3s ease-in
       }
 
-      .crude-options-button:hover{
+      .crud-options-button:hover{
         transform: scale(1.06) translate(0px, 1px);
         box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
         z-index: 3;
