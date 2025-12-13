@@ -27,27 +27,33 @@ document.addEventListener('click', () => {
 
 })
 
+// su dung event delegation de toi uu nhat, dang cap search engine
 document.querySelectorAll('.concrete-options').forEach((option, index) => {
-    option.addEventListener('click', e=> {
+    option.addEventListener('click', e => {
         e.stopPropagation();
-
-        console.log(e.target);
 
         if(e.target.matches('.delete-button')) {
             console.log("It's delete button");
-            products.splice(index, 1);
-            console.log(products)
-            renderHTML();
-        }    
+            const overlay = document.querySelector('.popup-overlay');
+            overlay.style.visibility = "visible";
+            overlay.style.opacity = 1;
+            
+            document.body.classList.add('no-scroll');
+            overlay.querySelector('.add-items-overlay').classList.add('showcase');
+
+            // tiep tuc su dung event delegation hahah
+            overlay.querySelector('.confirm-actions').addEventListener('click', e => {
+                e.stopPropagation();
+
+                if(e.target.matches('.cancel-button')) {
+                    overlay.style.opacity = 0;
+                    overlay.style.visibility = "hidden";
+                    document.body.classList.remove('no-scroll');
+                }
+            })
+        }
+        
     })
-
-
-
-    
-
-
-
-
 })
 
 

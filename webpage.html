@@ -11,7 +11,90 @@
     <link rel="stylesheet" href="bestselling-prods.css">
     <link rel="stylesheet" href="products-preview-info.css">
     <style>
-      
+      .popup-overlay{
+        position:fixed;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        background: rgba(0, 0, 0, 0.7);
+        z-index:9999;
+        display:flex;
+        align-items:center;
+        justify-content: center;
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      .no-scroll{
+        height: 100%;
+        overflow:hidden;
+      }
+
+      .add-items-overlay {
+        background: white;
+        width: 36%;
+        border-radius: 12px;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+      }
+
+      .add-items-overlay.showcase{
+        animation: slideDown 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .confirm-actions{
+        display:flex;
+        justify-content: flex-end;
+        margin-right: 20px;
+        margin-bottom: 22px;
+        gap: 15px;
+      }
+
+      .cancel-button{
+        background: black;
+        color: white;
+        width: 100px;
+        height: 30px;
+        border-radius:10px;
+        transition: 0.3s ease-in-out
+      }
+
+      .cancel-button:hover{
+        transform: scale(1.05) translate(-1px, -1px);
+        background:#1E90FF;
+      }
+
+      .confirm-delete-button{
+        background: red;
+        color: white;
+        border-radius: 12px;
+        width: 100px;
+        height: 30px;
+        transition: 0.15s ease-in-out;
+      }
+
+      .confirm-delete-button:hover{
+        background: #b91c1c;
+        transform: translateY(-2px)
+      }
+
+      @keyframes slideDown {
+        0% {
+          transform: translateY(-40px) scale(0.92);
+          opacity: 0;
+          filter: blur(4px);
+        }
+
+        60% {
+          transform: translateY(6px) scale(1.01);
+          opacity: 1;
+          filter: blur(0);
+        }
+
+        100% {
+          transform: translateY(0) scale(1);
+        }
+}
     </style>
   </head>
   <body>
@@ -61,6 +144,19 @@
        ->phải dùng cách thay thế đó chính là sử dụng objects, đúng đẳng cấp Kiên Hoàng research ra được cái này đúng đẳng cấp hahahahahah -->
       <ul class="all-products">
       </ul>
+    </div>
+
+    <div class="popup-overlay">
+      <div class="add-items-overlay">
+        <h2 style="padding-left: 10px; margin-bottom: 0px; font-size: 28px"> Delete items</h2>
+        <p style="font-size: 15px; padding-bottom: 6px; color: gray; padding-left: 6px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"> Are you sure to delete this item from product list ? Please note that this action cannot be restored</p>
+        <div class="confirm-actions">
+          <button class="cancel-button"> Cancel </button>
+          <button class="confirm-delete-button"> Delete</button>
+        </div>
+      </div>
+      <div class="update-items-overlay"></div>
+      <div class="delete-items-overlay"></div>
     </div>
   </body>
 
