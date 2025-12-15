@@ -19,6 +19,7 @@ all_products.addEventListener('click', e=> {
         concrete_option.style.visibility = "visible";
     }
 
+    // đây là phần delete items, ban đầu định tách riêng xử lí từng thằng một, nhưng mà bây giờ xử lí cả 3 options luôn
     if(e.target.matches('.delete-button')) {
         console.log("It's a delete button");
         removed_index = Array.from(document.querySelectorAll('.delete-button')).indexOf(e.target);

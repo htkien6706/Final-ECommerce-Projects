@@ -9,7 +9,14 @@ const allProducts = [
     detailed_description:
       "A luxurious cable-knit turtleneck made from a warm mid-weight wool blend designed for cool-weather layering. The structured neck keeps its shape while the textured stitching adds timeless character to any outfit. Perfect for pairing with denim or tailored trousers.",
     total_buyer: 240,
-    rating: 4.7
+    rating: 4.7,
+    product_images: 
+    ["image/product-1/preview-image-1.1.avif", 
+      "image/product-1/preview-image-1.2.avif",
+      "image/product-1/preview-image-1.3.avif",
+      "image/product-1/preview-image-1.4.avif",
+      "image/product-1/preview-image-1.5.avif"
+    ]
   },
   {
     product_description: "Premium Soft Touch Knit Hoodie",
