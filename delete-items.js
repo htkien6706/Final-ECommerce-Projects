@@ -1,6 +1,8 @@
 import {allProducts as products} from "./product-details.js";
 import {renderHTML} from "./render-products.js";
 
+let removed_index = null;
+
 const all_products = document.querySelector('.all-products');
 all_products.addEventListener('click', e=> {
     if(e.target.matches('.crud-options-button')) {
@@ -19,15 +21,14 @@ all_products.addEventListener('click', e=> {
 
     if(e.target.matches('.delete-button')) {
         console.log("It's a delete button");
+        removed_index = Array.from(document.querySelectorAll('.delete-button')).indexOf(e.target);
+        console.log(removed_index);
         e.stopPropagation();
         const popup_overlay = document.querySelector('.popup-overlay');
         popup_overlay.classList.add('active');
         popup_overlay.querySelector('.delete-items-overlay').classList.add('active');
         popup_overlay.querySelector('.delete-items-overlay').classList.add('showcase');
-    }
 
-    if(e.target.matches('.cancel-button')) {
-        console.log("It's cancel button !");
     }
 
     else if(e.target.matches('.update-button')) {
@@ -53,7 +54,7 @@ popup_overlay.addEventListener('click', e=> {
         console.log("It's cancel button !");
         popup_overlay.classList.remove('active');
         popup_overlay.querySelector('.delete-items-overlay').classList.remove('active');
-        popup_overlay.querySelector('.delete-items-overlay').classtList.remove('showcase');
+        popup_overlay.querySelector('.delete-items-overlay').classList.remove('showcase');
 
     }
 
@@ -61,9 +62,12 @@ popup_overlay.addEventListener('click', e=> {
         console.log("Confirm deleting items !");
         popup_overlay.classList.remove('active');
         popup_overlay.querySelector('.delete-items-overlay').classList.remove('active');
-        popup_overlay.querySelector('.delete-items-overlay').classtList.remove('showcase');
-        
+        popup_overlay.querySelector('.delete-items-overlay').classList.remove('showcase');
 
+        const new_prods = products.splice(removed_index, 1);
+        renderHTML();
     }
+
+
 })
 
