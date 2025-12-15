@@ -1,60 +1,69 @@
 import {allProducts as products} from "./product-details.js";
 import {renderHTML} from "./render-products.js";
 
-const crud_buttons = document.querySelectorAll('.crud-options-button');
-
-crud_buttons.forEach((crud_button, index) => {
-    crud_button.addEventListener('click', e=>{
+const all_products = document.querySelector('.all-products');
+all_products.addEventListener('click', e=> {
+    if(e.target.matches('.crud-options-button')) {
         e.stopPropagation();
-        const prev_div = crud_button.parentNode;
-        const concrete_option = prev_div.querySelector('.concrete-options');
-        console.log(concrete_option);
-        
-        document.querySelectorAll('.concrete-options').forEach((option) => {
+        console.log(e.target);
+        const option_button = e.target;
+        const concrete_option = e.target.parentElement.querySelector('.concrete-options');
+        console.log("Crud-option clicked");
+        all_products.querySelectorAll('.concrete-options').forEach((option) => {
             option.style.visibility = "hidden";
+            console.log(option);
         })
 
         concrete_option.style.visibility = "visible";
-    })
+    }
+
+    if(e.target.matches('.delete-button')) {
+        console.log("It's a delete button");
+        e.stopPropagation();
+        const popup_overlay = document.querySelector('.popup-overlay');
+        popup_overlay.classList.add('active');
+        popup_overlay.querySelector('.delete-items-overlay').classList.add('active');
+        popup_overlay.querySelector('.delete-items-overlay').classList.add('showcase');
+    }
+
+    if(e.target.matches('.cancel-button')) {
+        console.log("It's cancel button !");
+    }
+
+    else if(e.target.matches('.update-button')) {
+        console.log("It's update button !");
+    }
+
+    else if(e.target.matches('.view-button')) {
+        console.log("It's view button !");
+    }
 })
 
-// document nos contain all, nen no se bat tat ca su kien
-// muon customize rieng, thi phai co e.stoppropagtion
-document.addEventListener('click', () => {
-    document.querySelectorAll('.concrete-options').forEach((option, index) => {
+document.addEventListener('click', e=>{
+    document.querySelectorAll('.concrete-options').forEach((option) => {
         option.style.visibility = "hidden";
     })
-
 })
 
-// su dung event delegation de toi uu nhat, dang cap search engine
-document.querySelectorAll('.concrete-options').forEach((option, index) => {
-    option.addEventListener('click', e => {
-        e.stopPropagation();
+const popup_overlay = document.querySelector('.popup-overlay')
+popup_overlay.addEventListener('click', e=> {
+    e.stopPropagation();
 
-        if(e.target.matches('.delete-button')) {
-            console.log("It's delete button");
-            const overlay = document.querySelector('.popup-overlay');
-            overlay.style.visibility = "visible";
-            overlay.style.opacity = 1;
-            
-            document.body.classList.add('no-scroll');
-            overlay.querySelector('.add-items-overlay').classList.add('showcase');
+    if(e.target.matches('.cancel-button')) {
+        console.log("It's cancel button !");
+        popup_overlay.classList.remove('active');
+        popup_overlay.querySelector('.delete-items-overlay').classList.remove('active');
+        popup_overlay.querySelector('.delete-items-overlay').classtList.remove('showcase');
 
-            // tiep tuc su dung event delegation hahah
-            overlay.querySelector('.confirm-actions').addEventListener('click', e => {
-                e.stopPropagation();
+    }
 
-                if(e.target.matches('.cancel-button')) {
-                    overlay.style.opacity = 0;
-                    overlay.style.visibility = "hidden";
-                    document.body.classList.remove('no-scroll');
-                }
-            })
-        }
+    else if(e.target.matches('.confirm-delete-button')) {
+        console.log("Confirm deleting items !");
+        popup_overlay.classList.remove('active');
+        popup_overlay.querySelector('.delete-items-overlay').classList.remove('active');
+        popup_overlay.querySelector('.delete-items-overlay').classtList.remove('showcase');
         
-    })
+
+    }
 })
-
-
 

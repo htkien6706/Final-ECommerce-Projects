@@ -26,19 +26,31 @@
         opacity: 0;
       }
 
+      .popup-overlay.active{
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .delete-items-overlay.active{
+        visibility: visible;
+        opacity: 1;
+      }
+
       .no-scroll{
         height: 100%;
         overflow:hidden;
       }
 
-      .add-items-overlay {
+      .delete-items-overlay {
         background: white;
         width: 36%;
         border-radius: 12px;
         box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+        visibility: hidden;
+        opacity: 0;
       }
 
-      .add-items-overlay.showcase{
+      .delete-items-overlay.showcase{
         animation: slideDown 0.45s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
@@ -147,7 +159,7 @@
     </div>
 
     <div class="popup-overlay">
-      <div class="add-items-overlay">
+      <div class="delete-items-overlay">
         <h2 style="padding-left: 10px; margin-bottom: 0px; font-size: 28px"> Delete items</h2>
         <p style="font-size: 15px; padding-bottom: 6px; color: gray; padding-left: 6px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"> Are you sure to delete this item from product list ? Please note that this action cannot be restored</p>
         <div class="confirm-actions">
@@ -156,7 +168,7 @@
         </div>
       </div>
       <div class="update-items-overlay"></div>
-      <div class="delete-items-overlay"></div>
+      <div class="add-items-overlay"></div>
     </div>
   </body>
 
