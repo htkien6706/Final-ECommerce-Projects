@@ -1,7 +1,8 @@
 import {allProducts as products} from "./product-details.js";
-import {renderHTML} from "./render-products.js";
+import {renderHTML} from "./render-card-items.js";
 
 let removed_index = null;
+let view_index = null;
 
 const all_products = document.querySelector('.all-products');
 all_products.addEventListener('click', e=> {
@@ -38,6 +39,10 @@ all_products.addEventListener('click', e=> {
 
     else if(e.target.matches('.view-button')) {
         console.log("It's view button !");
+        e.stopPropagation();
+        view_index = Array.from(document.querySelectorAll('.view-button')).indexOf(e.target);
+        console.log(view_index);
+        localStorage.setItem("view-index", "" + view_index);
     }
 })
 

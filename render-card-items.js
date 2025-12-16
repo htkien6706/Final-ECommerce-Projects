@@ -1,10 +1,10 @@
+// this js function is used to rerender DOM tree when a node is cleaned from DOM tree
 import {allProducts} from "./product-details.js";
 export {renderHTML}
 
-renderHTML();
-
 function renderHTML() {
   let html = "";
+  
   allProducts.forEach((product) => {
     html +=  `
         <li class="card-items">
