@@ -1,6 +1,5 @@
 import {allProducts as products} from "./product-details.js"
 let view_index = Number(localStorage.getItem("view-index"));
-localStorage.clear();
 console.log(view_index);
 
 document.querySelector('.body-container').innerHTML = `
@@ -53,19 +52,17 @@ document.querySelector('.body-container').innerHTML = `
       </div>
 
       <div class="product-info">
-        <p class="product-name">Heritage Cable Knit Turtleneck Sweater</p>
+        <p class="product-name"> ${products[view_index].product_description}</p>
         <div class="price-container">
-          <span class="new-price"> $105</span>
-          <span class="old-price">$125</span>
+          <span class="new-price"> ${products[view_index].discount_price}</span>
+          <span class="old-price">${products[view_index].original_price}</span>
         </div>
 
         <div class="description">
           <div class="description">
             <h3>Description</h3>
             <p>
-              Elevate your winter wardrobe with our Heritage Cable Knit
-              Turtleneck Sweater. Crafted from premium quality yarn, this
-              timeless piece combines classic elegance with modern comfort.
+              ${products[view_index].detailed_description}
             </p>
             <p>
               Perfect for layering or wearing on its own, this sweater features

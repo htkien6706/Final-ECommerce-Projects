@@ -43,6 +43,8 @@ all_products.addEventListener('click', e=> {
         view_index = Array.from(document.querySelectorAll('.view-button')).indexOf(e.target);
         console.log(view_index);
         localStorage.setItem("view-index", "" + view_index);
+
+        window.location.href = "product-details.html";
     }
 })
 
