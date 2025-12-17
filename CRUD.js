@@ -1,8 +1,13 @@
-import {allProducts as products} from "./product-details.js";
+import {allProducts as defaultProducts} from "./product-details.js";
 import {renderHTML} from "./render-card-items.js";
+import { addProduct, deleteProduct, getProduct, KEY_LOCAL_STORAGE, initProducts } from "./products-services.js";
 
 let removed_index = null;
 let view_index = null;
+
+let products = initProducts(defaultProducts);
+renderHTML(products);
+console.log(products);
 
 const all_products = document.querySelector('.all-products');
 all_products.addEventListener('click', e=> {
@@ -81,8 +86,9 @@ popup_overlay.addEventListener('click', e=> {
         popup_overlay.querySelector('.delete-items-overlay').classList.remove('active');
         popup_overlay.querySelector('.delete-items-overlay').classList.remove('showcase');
 
-        const new_prods = products.splice(removed_index, 1);
-        renderHTML();
+        deleteProduct(products, removed_index);
+        products = getProduct();
+        renderHTML(products);
     }
 
     //This is the add button in add functionality
@@ -96,9 +102,9 @@ popup_overlay.addEventListener('click', e=> {
 
         let added_product_name = document.getElementById("product-name").value;
         let added_preview_image = document.getElementById("preview-image");
-        let added_original_price = document.getElementById("original-price");
-        let added_discount_price = document.getElementById("discount-price");
-        let added_detailed_description = document.getElementById("detailed_description");
+        let added_original_price = document.getElementById("original-price").value;
+        let added_discount_price = document.getElementById("discount-price").value;
+        let added_detailed_description = document.getElementById("detailed_description").value;
         let added_total_buyer = 0;
         let added_rating = 0;
         let added_product_images = [
@@ -110,9 +116,9 @@ popup_overlay.addEventListener('click', e=> {
     ]
 
 
-        let added_products = {
+        let added_product = {
             product_description: added_product_name,
-            preview_image: added_preview_image,
+            preview_image: "image/preview-image-1.1.avif",
             original_price: added_original_price,
             discount_price:added_discount_price,
             detailed_description:added_detailed_description,
@@ -121,8 +127,10 @@ popup_overlay.addEventListener('click', e=> {
             product_images: added_product_images
         }
 
-        products.push(added_products);
-        renderHTML();
+        addProduct(products, added_product);
+        products = getProduct();
+
+        renderHTML(products);
     }
 
     //this is the cancel action of add functionality
