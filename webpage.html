@@ -10,103 +10,38 @@
     <link rel="stylesheet" href="product-types.css">
     <link rel="stylesheet" href="bestselling-prods.css">
     <link rel="stylesheet" href="products-preview-info.css">
+    <link rel="stylesheet" href="add-items-overlay.css">
+    <link rel="stylesheet" href="overlay.css">
+    <link rel="stylesheet" href="delete-overlay.css">
     <style>
-      .popup-overlay{
-        position:fixed;
-        top:0;
-        left:0;
-        right:0;
-        bottom:0;
-        background: rgba(0, 0, 0, 0.7);
-        z-index:9999;
-        display:flex;
-        align-items:center;
-        justify-content: center;
-        visibility: hidden;
-        opacity: 0;
-      }
-
-      .popup-overlay.active{
-        visibility: visible;
-        opacity: 1;
-      }
-
-      .delete-items-overlay.active{
-        visibility: visible;
-        opacity: 1;
-      }
-
-      .no-scroll{
-        height: 100%;
-        overflow:hidden;
-      }
-
-      .delete-items-overlay {
-        background: white;
-        width: 36%;
+      .confirm-add-button{
+        background:red;
+        color:white;
+        width: 120px;
         border-radius: 12px;
-        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
-        visibility: hidden;
-        opacity: 0;
+        height: 30px;
+        cursor: pointer;
+        transition: 0.3s ease-in
       }
 
-      .delete-items-overlay.showcase{
-        animation: slideDown 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      .confirm-add-button:hover{
+        background:#C62828
       }
 
-      .confirm-actions{
-        display:flex;
-        justify-content: flex-end;
-        margin-right: 20px;
-        margin-bottom: 22px;
-        gap: 15px;
-      }
-
-      .cancel-button{
+      .cancel-add-button{
         background: black;
         color: white;
         width: 100px;
         height: 30px;
         border-radius:10px;
-        transition: 0.3s ease-in-out
+        transition: 0.3s ease-in-out;
+        cursor:pointer;
       }
 
-      .cancel-button:hover{
+      .cancel-add-button{
         transform: scale(1.05) translate(-1px, -1px);
         background:#1E90FF;
       }
-
-      .confirm-delete-button{
-        background: red;
-        color: white;
-        border-radius: 12px;
-        width: 100px;
-        height: 30px;
-        transition: 0.15s ease-in-out;
-      }
-
-      .confirm-delete-button:hover{
-        background: #b91c1c;
-        transform: translateY(-2px)
-      }
-
-      @keyframes slideDown {
-        0% {
-          transform: translateY(-40px) scale(0.92);
-          opacity: 0;
-          filter: blur(4px);
-        }
-
-        60% {
-          transform: translateY(6px) scale(1.01);
-          opacity: 1;
-          filter: blur(0);
-        }
-
-        100% {
-          transform: translateY(0) scale(1);
-        }
-}
     </style>
   </head>
   <body>
@@ -167,8 +102,60 @@
           <button class="confirm-delete-button"> Delete</button>
         </div>
       </div>
-      <div class="update-items-overlay"></div>
-      <div class="add-items-overlay"></div>
+
+      <div class="update-items-overlay">
+        
+      </div>
+      
+      <div class="add-items-overlay">
+      <form class="add-items-form">
+        <h2 style="display:flex; justify-content:center"> Add Product</h2>
+        <label>
+          Product name
+          <input type="text" placeholder="Enter the product name:">
+        </label>
+
+        <label>
+          Preview image(Enter the URL)
+          <input type="text" placeholder="Enter the preview-image">
+        </label>
+
+        <div class="price-group">
+          <label>
+            Original Price:
+            <input type="text" value = "$100">
+          </label>
+
+          <label>
+            Discount Price:
+            <input type="text" value="20$">
+          </label>
+        </div>
+
+        <label>
+          Product full description
+          <textarea></textarea>
+        </label>
+
+        <div class="user-exp">
+          <label>
+            Total buyers
+            <input type="text">
+          </label>
+
+          <label>
+            Rating
+            <input type="text">
+          </label>
+        </div>
+
+        <div class="confirm-actions">
+          <button class="cancel-add-button"> Cancel </button>
+          <button class="confirm-add-button"> Add products !</button>
+        </div>
+
+      </form>
+    </div>
     </div>
   </body>
 

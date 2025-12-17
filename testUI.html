@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Test UI </title>
+        <style>
+            .add-items-overlay {
+  background: white;
+  width: 42%;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+.add-product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.add-product-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  gap: 4px;
+}
+
+.add-product-form input,
+.add-product-form textarea {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.price-group,
+.stats-group {
+  display: flex;
+  gap: 10px;
+}
+
+.price-group label,
+.stats-group label {
+  flex: 1;
+}
+
+        </style>
+    </head>
+    <body>
+        <div class="add-items-overlay">
+  <form class="add-product-form">
+    <h2>Add Product</h2>
+
+    <label>
+      Product name
+      <input name="product_description" required />
+    </label>
+
+    <label>
+      Preview image (URL)
+      <input name="preview_image" required />
+    </label>
+
+    <div class="price-group">
+      <label>
+        Original price
+        <input name="original_price" placeholder="$98.00" required />
+      </label>
+
+      <label>
+        Discount price
+        <input name="discount_price" placeholder="$62.00" required />
+      </label>
+    </div>
+
+    <label>
+      Detailed description
+      <textarea name="detailed_description" rows="4" required></textarea>
+    </label>
+
+    <div class="stats-group">
+      <label>
+        Total buyer
+        <input name="total_buyer" type="number" min="0" required />
+      </label>
+
+      <label>
+        Rating
+        <input name="rating" type="number" step="0.1" min="0" max="5" required />
+      </label>
+    </div>
+
+    <label>
+      Product images (mỗi dòng 1 URL)
+      <textarea
+        name="product_images"
+        rows="4"
+        placeholder="image/1.avif&#10;image/2.avif"
+        required
+      ></textarea>
+    </label>
+
+    <div class="confirm-actions">
+      <button type="button" class="cancel-button">Cancel</button>
+      <button type="submit" class="confirm-delete-button">Add</button>
+    </div>
+  </form>
+</div>
+
+    </body>
+</html>

@@ -1,15 +1,19 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title> Check UI</title>
-    <style>
-      .add-items-overlay {
+    .add-items-overlay {
         max-width: 520px;
         margin: auto;
         background: #ffffff;
         padding: 24px 28px;
         border-radius: 12px;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        display:none;
+      }
+
+      .add-items-overlay.showcase{
+        animation: slideDown 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .add-items-overlay.active{
+        display:block
       }
 
       .add-items-form {
@@ -63,9 +67,22 @@
         color: #98a2b3;
         font-size: 13px;
       }
-    </style>
-  </head>
-  <body>
-    
-  </body>
-</html>
+
+      @keyframes slideDown {
+        0% {
+          transform: translateY(-40px) scale(0.92);
+          opacity: 0;
+          filter: blur(4px);
+        }
+
+        60% {
+          transform: translateY(6px) scale(1.01);
+          opacity: 1;
+          filter: blur(0);
+        }
+
+        100% {
+          transform: translateY(0) scale(1);
+        }
+}
+

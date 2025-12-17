@@ -1,0 +1,69 @@
+.delete-items-overlay.active{
+        display:block;
+      }
+
+      .delete-items-overlay {
+        background: white;
+        width: 36%;
+        border-radius: 12px;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+        display:none;
+      }
+
+      .delete-items-overlay.showcase{
+        animation: slideDown 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .confirm-actions{
+        display:flex;
+        justify-content: flex-end;
+        margin-right: 20px;
+        margin-bottom: 22px;
+        gap: 15px;
+      }
+
+      .cancel-button{
+        background: black;
+        color: white;
+        width: 100px;
+        height: 30px;
+        border-radius:10px;
+        transition: 0.3s ease-in-out
+      }
+
+      .cancel-button:hover{
+        transform: scale(1.05) translate(-1px, -1px);
+        background:#1E90FF;
+      }
+
+      .confirm-delete-button{
+        background: red;
+        color: white;
+        border-radius: 12px;
+        width: 100px;
+        height: 30px;
+        transition: 0.15s ease-in-out;
+      }
+
+      .confirm-delete-button:hover{
+        background: #b91c1c;
+        transform: translateY(-2px)
+      }
+
+      @keyframes slideDown {
+        0% {
+          transform: translateY(-40px) scale(0.92);
+          opacity: 0;
+          filter: blur(4px);
+        }
+
+        60% {
+          transform: translateY(6px) scale(1.01);
+          opacity: 1;
+          filter: blur(0);
+        }
+
+        100% {
+          transform: translateY(0) scale(1);
+        }
+}
