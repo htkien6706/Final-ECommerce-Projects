@@ -94,22 +94,31 @@ popup_overlay.addEventListener('click', e=> {
         document.querySelector('.add-items-overlay').classList.remove("showcase");
         document.querySelector('.add-items-overlay').classList.remove("active");
 
+        let added_product_name = document.getElementById("product-name").value;
+        let added_preview_image = document.getElementById("preview-image");
+        let added_original_price = document.getElementById("original-price");
+        let added_discount_price = document.getElementById("discount-price");
+        let added_detailed_description = document.getElementById("detailed_description");
+        let added_total_buyer = 0;
+        let added_rating = 0;
+        let added_product_images = [
+      "image/preview-image-1.1.avif",
+      "image/preview-image-1.2.avif",
+      "image/preview-image-1.3.avif",
+      "image/preview-image-1.4.avif",
+      "image/preview-image-1.5.avif"
+    ]
+
+
         let added_products = {
-            product_description: "Heritage Cable Knit Turtleneck Sweater",
-            preview_image: "image/preview-image-1.webp",
-            original_price: "$98.00",
-            discount_price: "$62.00",
-            detailed_description:
-            "Inspired by classic heritage knitwear, this cable-knit turtleneck sweater is crafted from a premium mid-weight wool blend that provides warmth without excessive bulk. The intricate cable texture adds depth and character, while the high turtleneck collar offers natural insulation against cold weather. Designed for refined layering, this piece balances timeless style with modern comfort, making it a versatile essential for both casual and elevated outfits.",
-            total_buyer: 240,
-            rating: 4.7,
-            product_images: [
-            "image/preview-image-1.1.avif",
-            "image/preview-image-1.2.avif",
-            "image/preview-image-1.3.avif",
-            "image/preview-image-1.4.avif",
-            "image/preview-image-1.5.avif"
-            ]
+            product_description: added_product_name,
+            preview_image: added_preview_image,
+            original_price: added_original_price,
+            discount_price:added_discount_price,
+            detailed_description:added_detailed_description,
+            total_buyer: added_total_buyer,
+            rating:added_rating ,
+            product_images: added_product_images
         }
 
         products.push(added_products);

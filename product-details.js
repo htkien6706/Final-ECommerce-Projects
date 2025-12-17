@@ -1,3 +1,5 @@
+export { allProducts };
+
 const allProducts = [
   {
     product_description: "Heritage Cable Knit Turtleneck Sweater",
@@ -360,4 +362,4 @@ const allProducts = [
   }
 ];
 
-export { allProducts };
+
