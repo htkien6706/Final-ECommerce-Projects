@@ -4,51 +4,22 @@
     <title>Kien Hoang webpage</title>
     <link rel="icon" type="image/jpg" href="image/favicon.jpg" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="welcome-words.css">
-    <link rel="stylesheet" href="product-types.css">
-    <link rel="stylesheet" href="bestselling-prods.css">
-    <link rel="stylesheet" href="products-preview-info.css">
-    <link rel="stylesheet" href="add-items-overlay.css">
-    <link rel="stylesheet" href="overlay.css">
-    <link rel="stylesheet" href="delete-overlay.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="header.css" />
+    <link rel="stylesheet" href="welcome-words.css" />
+    <link rel="stylesheet" href="product-types.css" />
+    <link rel="stylesheet" href="bestselling-prods.css" />
+    <link rel="stylesheet" href="products-preview-info.css" />
+    <link rel="stylesheet" href="add-items-overlay.css" />
+    <link rel="stylesheet" href="overlay.css" />
+    <link rel="stylesheet" href="delete-overlay.css" />
+    <link rel="stylesheet" href="update-overlay.css">
     <style>
-      .confirm-add-button{
-        background:red;
-        color:white;
-        width: 120px;
-        border-radius: 12px;
-        height: 30px;
-        cursor: pointer;
-        transition: 0.3s ease-in
-      }
-
-      .confirm-add-button:hover{
-        background:#C62828
-      }
-
-      .cancel-add-button{
-        background: black;
-        color: white;
-        width: 100px;
-        height: 30px;
-        border-radius:10px;
-        transition: 0.3s ease-in-out;
-        cursor:pointer;
-      }
-
-      .cancel-add-button{
-        transform: scale(1.05) translate(-1px, -1px);
-        background:#1E90FF;
-      }
+      
     </style>
   </head>
   <body>
-    <div class="header-container">
-      
-    </div>
-    
+    <div class="header-container"></div>
 
     <div class="brief-intro-image">
       <img
@@ -84,81 +55,156 @@
         </li>
       </ul>
 
-      <p style="font-weight: 550; font-size: 30px; margin-top: 50px;"> Men's Shirts, Sweeters, Tees & Polos</p>
+      <p style="font-weight: 550; font-size: 30px; margin-top: 50px">
+        Men's Shirts, Sweeters, Tees & Polos
+      </p>
 
       <!-- thay vì mỗi sản phẩm lại phải copy paste xuống thì sẽ tốn rất nhiều khi mà cái projects nó scale lên
        -> nên 10k sản phẩm mà cứ copy paste xong mỗi thông tin sản phẩm lại một file html thì gần như là bất lực
        ->phải dùng cách thay thế đó chính là sử dụng objects, đúng đẳng cấp Kiên Hoàng research ra được cái này đúng đẳng cấp hahahahahah -->
-      <ul class="all-products">
-      </ul>
+      <ul class="all-products"></ul>
     </div>
 
     <div class="popup-overlay">
       <div class="delete-items-overlay">
-        <h2 style="padding-left: 10px; margin-bottom: 0px; font-size: 28px"> Delete items</h2>
-        <p style="font-size: 15px; padding-bottom: 6px; color: gray; padding-left: 6px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"> Are you sure to delete this item from product list ? Please note that this action cannot be restored</p>
+        <h2 style="padding-left: 10px; margin-bottom: 0px; font-size: 28px">
+          Delete items
+        </h2>
+        <p
+          style="
+            font-size: 15px;
+            padding-bottom: 6px;
+            color: gray;
+            padding-left: 6px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+              'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+          "
+        >
+          Are you sure to delete this item from product list ? Please note that
+          this action cannot be restored
+        </p>
         <div class="confirm-actions">
-          <button class="cancel-button"> Cancel </button>
-          <button class="confirm-delete-button"> Delete</button>
+          <button class="cancel-button">Cancel</button>
+          <button class="confirm-delete-button">Delete</button>
         </div>
       </div>
 
       <div class="update-items-overlay">
-        
+        <form class="update-items-form">
+          <h2 style="display: flex; justify-content: center">Update Product</h2>
+          <label>
+            Product name
+            <input
+              id="product-name"
+              type="text"
+              placeholder="Enter the product name:"
+            />
+          </label>
+
+          <label>
+            Preview image(Enter the URL)
+            <input
+              id="preview-image"
+              type="text"
+              placeholder="Enter the preview-image"
+            />
+          </label>
+
+          <div class="price-group">
+            <label>
+              Original Price:
+              <input id="original-price" type="text" value="$100" />
+            </label>
+
+            <label>
+              Discount Price:
+              <input id="discount-price" type="text" value="20$" />
+            </label>
+          </div>
+
+          <label>
+            Product full description
+            <textarea id="detailed_description"></textarea>
+          </label>
+
+          <div class="user-exp">
+            <label>
+              Total buyers
+              <input type="text" />
+            </label>
+
+            <label>
+              Rating
+              <input type="text" />
+            </label>
+          </div>
+
+          <div class="confirm-update-actions">
+            <button class="cancel-update-button">Cancel</button>
+            <button class="confirm-update-button">Add products !</button>
+          </div>
+        </form>
       </div>
-      
+
       <div class="add-items-overlay">
-      <form class="add-items-form">
-        <h2 style="display:flex; justify-content:center"> Add Product</h2>
-        <label>
-          Product name
-          <input id="product-name" type="text" placeholder="Enter the product name:">
-        </label>
-
-        <label>
-          Preview image(Enter the URL)
-          <input id="preview-image" type="text" placeholder="Enter the preview-image">
-        </label>
-
-        <div class="price-group">
+        <form class="add-items-form">
+          <h2 style="display: flex; justify-content: center">Add Product</h2>
           <label>
-            Original Price:
-            <input id="original-price" type="text" value = "$100">
+            Product name
+            <input
+              id="product-name"
+              type="text"
+              placeholder="Enter the product name:"
+            />
           </label>
 
           <label>
-            Discount Price:
-            <input id="discount-price" type="text" value="20$">
+            Preview image(Enter the URL)
+            <input
+              id="preview-image"
+              type="text"
+              placeholder="Enter the preview-image"
+            />
           </label>
-        </div>
 
-        <label>
-          Product full description
-          <textarea id="detailed_description"></textarea>
-        </label>
+          <div class="price-group">
+            <label>
+              Original Price:
+              <input id="original-price" type="text" value="$100" />
+            </label>
 
-        <div class="user-exp">
+            <label>
+              Discount Price:
+              <input id="discount-price" type="text" value="20$" />
+            </label>
+          </div>
+
           <label>
-            Total buyers
-            <input type="text">
+            Product full description
+            <textarea id="detailed_description"></textarea>
           </label>
 
-          <label>
-            Rating
-            <input type="text">
-          </label>
-        </div>
+          <div class="user-exp">
+            <label>
+              Total buyers
+              <input type="text" />
+            </label>
 
-        <div class="confirm-actions">
-          <button class="cancel-add-button"> Cancel </button>
-          <button class="confirm-add-button"> Add products !</button>
-        </div>
+            <label>
+              Rating
+              <input type="text" />
+            </label>
+          </div>
 
-      </form>
-    </div>
+          <div class="confirm-actions">
+            <button class="cancel-add-button">Cancel</button>
+            <button class="confirm-add-button">Add products !</button>
+          </div>
+        </form>
+      </div>
     </div>
   </body>
 
   <script src="render-header.js" defer></script>
-  <script type = "module" src="CRUD.js" defer></script>
+  <script type="module" src="CRUD.js" defer></script>
 </html>

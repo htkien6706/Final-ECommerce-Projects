@@ -1,4 +1,4 @@
-    .add-items-overlay {
+    .update-items-overlay {
         max-width: 520px;
         margin: auto;
         background: #ffffff;
@@ -8,21 +8,27 @@
         display:none;
       }
 
-      .add-items-overlay.showcase{
+      .update-items-overlay.showcase{
         animation: slideDown 0.45s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
-      .add-items-overlay.active{
+      .update-items-overlay.active{
         display:block
       }
 
-      .add-items-form {
+      .update-items-form {
         display: flex;
         flex-direction: column;
         gap: 18px;
       }
 
-      .add-items-form label {
+      .confirm-update-actions{
+        display:flex;
+        justify-content:flex-end;
+        gap: 10px;
+      }
+
+      .update-items-form label {
         display: flex;
         flex-direction: column;
         gap: 6px;
@@ -31,8 +37,8 @@
         color: #333;
       }
 
-      .add-items-form input,
-      .add-items-form textarea {
+      .update-items-form input,
+      .update-items-form textarea {
         padding: 10px 12px;
         border-radius: 8px;
         border: 1px solid #d0d5dd;
@@ -40,13 +46,13 @@
         transition: border-color 0.2s, box-shadow 0.2s;
       }
 
-      .add-items-form textarea {
+      .update-items-form textarea {
         min-height: 90px;
         resize: vertical;
       }
 
-      .add-items-form input:focus,
-      .add-items-form textarea:focus {
+      .update-items-form input:focus,
+      .update-items-form textarea:focus {
         outline: none;
         border-color: #4f46e5;
         box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.15);
@@ -86,32 +92,32 @@
         }
 }
 
-.confirm-add-button {
-        background: red;
-        color: white;
-        width: 120px;
-        border-radius: 12px;
-        height: 30px;
-        cursor: pointer;
-        transition: 0.3s ease-in;
-      }
+        .confirm-update-button {
+            background: red;
+            color: white;
+            width: 120px;
+            border-radius: 12px;
+            height: 30px;
+            cursor: pointer;
+            transition: 0.3s ease-in;
+        }
 
-      .confirm-add-button:hover {
-        background: #c62828;
-      }
+        .confirm-update-button:hover {
+            background: #c62828;
+        }
 
-      .cancel-add-button {
-        background: black;
-        color: white;
-        width: 100px;
-        height: 30px;
-        border-radius: 10px;
-        transition: 0.3s ease-in-out;
-        cursor: pointer;
-      }
+        .cancel-update-button {
+            background: black;
+            color: white;
+            width: 100px;
+            height: 30px;
+            border-radius: 10px;
+            transition: 0.3s ease-in-out;
+            cursor: pointer;
+        }
 
-      .cancel-add-button {
-        transform: scale(1.05) translate(-1px, -1px);
-        background: #1e90ff;
-      }
+        .cancel-update-button {
+            transform: scale(1.05) translate(-1px, -1px);
+            background: #1e90ff;
+        }
 
