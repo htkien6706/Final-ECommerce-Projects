@@ -2,10 +2,9 @@
 // cái file này chuyên để import thôi, import chỉ được phép viết hàm, hoặc class hoặc data
 // không được phép viết self-called function 
 
-import {allProducts as products} from "./product-details.js"
 export {renderHTML_products}
 
-function renderHTML_products(view_index) {
+function renderHTML_products(products, view_index) {
     document.querySelector('.body-container').innerHTML = `
         <div class="product-image">
             <div class="slide-show">
