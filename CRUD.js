@@ -1,3 +1,8 @@
+//mé nó phải reset localStorage để làm lại ạ khổ cực vãi đái ra
+//căn bản mình đã ngáo ngơ khi set localStorage với value là normal object nên nó bị lỗi
+//lẽ ra phải stringify nhưng không, mình chỉ để object thường chứ không có json.stringify()làm cho localStroage bị lỗi -> càng CRUD càng bug
+
+
 import {allProducts as defaultProducts} from "./product-details.js";
 import {renderHTML} from "./render-card-items.js";
 import { addProduct, deleteProduct, getProduct, KEY_LOCAL_STORAGE, initProducts } from "./products-services.js";
@@ -60,7 +65,7 @@ all_products.addEventListener('click', e=> {
         document.getElementById("product-name").value = products[current_index].product_description;
         document.getElementById("preview-image").value = products[current_index].preview_image;
         document.getElementById("original-price").value = products[current_index].original_price;
-        document.getElementsByTagName("discount-price").value = products[current_index].discount_price;
+        document.getElementById("discount-price").value = products[current_index].discount_price;
         document.getElementById("detailed_description").value = products[current_index].detailed_description;
 
 
@@ -186,39 +191,30 @@ popup_overlay.addEventListener('click', e=> {
         e.stopPropagation();
         e.preventDefault();
 
+        //get products in localStorage for the lastest version of products
+        products = getProduct();
+
+        //use spread operator to shalow copy and allow overrwrite
+        products[current_index] = {
+                ...products[current_index],
+                product_description: document.getElementById("product-name").value,
+                preview_image: document.getElementById("preview-image").value,
+                original_price: document.getElementById("original-price").value,
+                discount_price: document.getElementById("discount-price").value,
+                detailed_description: document.getElementById("detailed_description").value
+        };
+
+        localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(products));
+
+        // just the update in the UI of webpage, also need update in product details
+        renderHTML(products); 
+
+
+
+        //remove the popup after finishing update items
         document.querySelector('.popup-overlay').classList.remove('active');
         document.querySelector('.update-items-overlay').classList.remove('showcase');
         document.querySelector('.update-items-overlay').classList.remove('active');
-
-
-        products = getProduct();
-
-        //Step 0: save all the modified dât to localStorage, and next step update it
-        products[current_index].product_description = document.getElementById("product-name").value;
-        products[current_index].preview_image = document.getElementById("preview-image").value;
-        products[current_index].original_price = document.getElementById("original-price").value;
-        products[current_index].discount_price = document.getElementById("discount-price").value;
-
-        // Step 1: update teh localStorage for future storage
-        localStorage.setItem(KEY_LOCAL_STORAGE, products);
-
-        products = getProduct();
-
-        //Step 2: using JS, fetch data for main screen, prepare for changing UI
-        // note that js changed cannot lead to DOM change, must render UI again
-        products[current_index].querySelector('.preview-image').src = products[current_index].preview_image;
-        
-        //children[0] synonymous with <p> product description
-        products[current_index].querySelector('.product-description').children[0].value = products[current_index].product_description;
-        products[current_index].getElementById("original-price").value = products[current_index].original_price;
-        products[current_index].getElementById("discount-price").value = products[current_index].discount_price;
-
-        //Step 3: render the UI of the webpage again to also change the DOM as wish
-        
-
-
-
-
 
     }
 
@@ -230,10 +226,10 @@ document.querySelector('.add-product-button').addEventListener('click', e=> {
     e.stopPropagation();
     popup_overlay.classList.add("active");
     document.querySelector('.add-items-overlay').classList.add("showcase");
-    document.querySelector('.add-items-overlay').classList.add("active")
+    document.querySelector('.add-items-overlay').classList.add("active");
 })
 
-console.log(products[products.length - 1]);
+
 
 
 
