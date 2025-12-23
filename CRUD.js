@@ -60,13 +60,13 @@ all_products.addEventListener('click', e=> {
         current_index = Array.from(document.querySelectorAll('.update-button')).indexOf(e.target);
         console.log(current_index);
 
-        products = getProduct();
+        products = getProduct(); //lấy ra sản phẩm ở trong localStorage
 
-        document.getElementById("product-name").value = products[current_index].product_description;
-        document.getElementById("preview-image").value = products[current_index].preview_image;
-        document.getElementById("original-price").value = products[current_index].original_price;
-        document.getElementById("discount-price").value = products[current_index].discount_price;
-        document.getElementById("detailed_description").value = products[current_index].detailed_description;
+        document.querySelector(".update-items-overlay").querySelector(".product-name").value = products[current_index].product_description;
+        document.querySelector(".update-items-overlay").querySelector(".preview-image").value = products[current_index].preview_image;
+        document.querySelector(".update-items-overlay").querySelector(".original-price").value = products[current_index].original_price;
+        document.querySelector(".update-items-overlay").querySelector(".discount-price").value = products[current_index].discount_price;
+        document.querySelector(".update-items-overlay").querySelector(".detailed_description").value = products[current_index].detailed_description;
 
 
         
@@ -114,12 +114,15 @@ popup_overlay.addEventListener('click', e=> {
         popup_overlay.querySelector('.delete-items-overlay').classList.remove('active');
         popup_overlay.querySelector('.delete-items-overlay').classList.remove('showcase');
 
-        deleteProduct(products, removed_index);
+        //xóa sản phẩm ở trong localStorage, đồng thời trả lại luôn số sản phẩm hiện tại
+        // lưu ý là dùng spread operator nên là khi return thì return tham trị, nhưng gán lại rồi thì lúc này products 
+        // cũng đã bị thay đổi theo
+        products = getProduct();
+        products = deleteProduct(products, removed_index);
 
         //reupdate the products after deleting items
         // if no use localStorage, the data interexchanged between two files is just temporary and just vanish when refresh..
         // we always want permanently store data, but now, no backend, just use localStorage
-        products = getProduct();
         renderHTML(products);
     }
 
@@ -132,11 +135,11 @@ popup_overlay.addEventListener('click', e=> {
         document.querySelector('.add-items-overlay').classList.remove("showcase");
         document.querySelector('.add-items-overlay').classList.remove("active");
 
-        let added_product_name = document.getElementById("product-name").value;
-        let added_preview_image = document.getElementById("preview-image");
-        let added_original_price = document.getElementById("original-price").value;
-        let added_discount_price = document.getElementById("discount-price").value;
-        let added_detailed_description = document.getElementById("detailed_description").value;
+        let added_product_name = document.querySelector('.add-items-overlay').querySelector(".product-name").value;
+        let added_preview_image = document.querySelector(".add-items-overlay").querySelector(".preview-image").value;
+        let added_original_price = document.querySelector(".add-items-overlay").querySelector(".original-price").value;
+        let added_discount_price = document.querySelector(".add-items-overlay").querySelector(".discount-price").value;
+        let added_detailed_description = document.querySelector(".add-items-overlay").querySelector(".detailed_description").value;
         let added_total_buyer = 0;
         let added_rating = 0;
         let added_product_images = [
@@ -159,10 +162,8 @@ popup_overlay.addEventListener('click', e=> {
             product_images: added_product_images
         }
 
-        addProduct(products, added_product);
-        //reupdate the localStorage for permanent storage of items
         products = getProduct();
-
+        products = addProduct(products, added_product);
         renderHTML(products);
     }
 
@@ -197,18 +198,16 @@ popup_overlay.addEventListener('click', e=> {
         //use spread operator to shalow copy and allow overrwrite
         products[current_index] = {
                 ...products[current_index],
-                product_description: document.getElementById("product-name").value,
-                preview_image: document.getElementById("preview-image").value,
-                original_price: document.getElementById("original-price").value,
-                discount_price: document.getElementById("discount-price").value,
-                detailed_description: document.getElementById("detailed_description").value
+                product_description: document.querySelector(".update-items-overlay").querySelector(".product-name").value,
+                preview_image: document.querySelector(".update-items-overlay").querySelector('.preview-image').value,
+                original_price: document.querySelector(".update-items-overlay").querySelector('.original-price').value,
+                discount_price: document.querySelector(".update-items-overlay").querySelector('.discount-price').value,
+                detailed_description: document.querySelector(".update-items-overlay").querySelector('.detailed_description').value
         };
 
         localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(products));
 
-        // just the update in the UI of webpage, also need update in product details
-        renderHTML(products); 
-
+       
 
 
         //remove the popup after finishing update items
@@ -216,6 +215,8 @@ popup_overlay.addEventListener('click', e=> {
         document.querySelector('.update-items-overlay').classList.remove('showcase');
         document.querySelector('.update-items-overlay').classList.remove('active');
 
+         // just the update in the UI of webpage, also need update in product details
+        renderHTML(products); 
     }
 
 

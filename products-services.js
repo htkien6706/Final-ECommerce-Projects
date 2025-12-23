@@ -24,16 +24,15 @@ export function initProducts(defaultProducts) {
 export function getProduct() {
     const raw = localStorage.getItem(KEY_LOCAL_STORAGE);
     if(!raw) {
-        localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(defaultProducts));
-        return defaultProducts;
+        return []; // lưu ý rằng getProducts chỉ có tác dụng lấy sản phẩm
+        // nếu mà không lấy được sản phẩm, null -> chả về mãng rỗng
     }
 
     else {
         try{
             return JSON.parse(raw);
-        } catch{
-            localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(defaultProducts));
-            return defaultProducts
+        } catch{ // dữ liệu rác kiểu dạng [object Object]
+            return[];
         }
     }
 }
