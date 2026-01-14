@@ -1,5 +1,4 @@
-document.querySelector('.header-container').innerHTML = 
-`
+document.querySelector(".header-container").innerHTML = `
     <div class="web-header">
       <div class="shipping">
         Free Shiping orders > 150$
@@ -55,4 +54,4 @@ document.querySelector('.header-container').innerHTML =
         <li>GIFT FOR GIRLFRIEND</li>
       </ul>
     
-`
+`;

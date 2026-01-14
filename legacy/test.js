@@ -1,5 +1,4 @@
-const oldButton = document.querySelector('.btn');
-oldButton.outerHTML = `<button class="btn">Click me</button>`;
-const newButton = document.querySelector('btn');
+const arr1 = [1,2,3,4,54];
+const arr2 = arr1.filter((num) => {num > 10});
 
-console.log(oldButton === newButton);
+console.log(arr1 === arr2)
