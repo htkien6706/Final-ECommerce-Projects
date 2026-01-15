@@ -2,13 +2,15 @@ import { useState } from 'react';
 import ProductTypes from "../ProductTypes/ProductType.jsx"
 import "./ProductList.css";
 import "./Delete.css";
+import "./Update.css";
+import { LIST_KEY, deleteProduct, addProduct, updateList, getProductList } from '../../services/ProductStorage.jsx';
 
 export default function ProductList() {
 
   const initialList = [
     {
       product_description: "Heritage Cable Knit Turtleneck Sweater",
-      preview_image: "image/preview-image-1.webp",
+      preview_image: "/image/preview-image-1.webp",
       original_price: "$98.00",
       discount_price: "$62.00",
       detailed_description:
@@ -27,7 +29,7 @@ export default function ProductList() {
 
     {
       product_description: "Premium Soft Touch Knit Hoodie",
-      preview_image: "image/preview-image-2.avif",
+      preview_image: "/image/preview-image-2.avif",
       original_price: "$85.00",
       discount_price: "$52.00",
       detailed_description:
@@ -35,18 +37,18 @@ export default function ProductList() {
       total_buyer: 180,
       rating: 4.5,
       product_images: [
-        "image/preview-image-2.1.avif",
-        "image/preview-image-2.2.avif",
-        "image/preview-image-2.3.avif",
-        "image/preview-image-2.4.avif",
-        "image/preview-image-2.5.avif"
+        "/image/preview-image-2.1.avif",
+        "/image/preview-image-2.2.avif",
+        "/image/preview-image-2.3.avif",
+        "/image/preview-image-2.4.avif",
+        "/image/preview-image-2.5.avif"
       ],
       uniqueId: crypto.randomUUID()
     },
 
     {
       product_description: "Modern Fit Lightweight Bomber Jacket",
-      preview_image: "image/preview-image-3.avif",
+      preview_image: "/image/preview-image-3.avif",
       original_price: "$140.00",
       discount_price: "$89.00",
       detailed_description:
@@ -54,18 +56,18 @@ export default function ProductList() {
       total_buyer: 350,
       rating: 4.8,
       product_images: [
-        "image/preview-image-3.1.avif",
-        "image/preview-image-3.2.avif",
-        "image/preview-image-3.3.avif",
-        "image/preview-image-3.4.avif",
-        "image/preview-image-3.5.avif"
+        "/image/preview-image-3.1.avif",
+        "/image/preview-image-3.2.avif",
+        "/image/preview-image-3.3.avif",
+        "/image/preview-image-3.4.avif",
+        "/image/preview-image-3.5.avif"
       ],
       uniqueId: crypto.randomUUID()
     },
 
     {
       product_description: "Everyday Performance Stretch Tech Pants",
-      preview_image: "image/preview-image-4.avif",
+      preview_image: "/image/preview-image-4.avif",
       original_price: "$78.00",
       discount_price: "$49.00",
       detailed_description:
@@ -73,18 +75,18 @@ export default function ProductList() {
       total_buyer: 420,
       rating: 4.6,
       product_images: [
-        "image/preview-image-4.1.avif",
-        "image/preview-image-4.2.avif",
-        "image/preview-image-4.3.avif",
-        "image/preview-image-4.4.avif",
-        "image/preview-image-4.5.avif"
+        "/image/preview-image-4.1.avif",
+        "/image/preview-image-4.2.avif",
+        "/image/preview-image-4.3.avif",
+        "/image/preview-image-4.4.avif",
+        "/image/preview-image-4.5.avif"
       ],
       uniqueId: crypto.randomUUID()
     },
 
     {
       product_description: "Essential Pima Cotton Long Sleeve Tee",
-      preview_image: "image/preview-image-5.avif",
+      preview_image: "/image/preview-image-5.avif",
       original_price: "$45.00",
       discount_price: "$28.00",
       detailed_description:
@@ -92,18 +94,18 @@ export default function ProductList() {
       total_buyer: 110,
       rating: 4.3,
       product_images: [
-        "image/preview-image-5.1.avif",
-        "image/preview-image-5.2.avif",
-        "image/preview-image-5.3.avif",
-        "image/preview-image-5.4.avif",
-        "image/preview-image-5.5.avif"
+        "/image/preview-image-5.1.avif",
+        "/image/preview-image-5.2.avif",
+        "/image/preview-image-5.3.avif",
+        "/image/preview-image-5.4.avif",
+        "/image/preview-image-5.5.avif"
       ],
       uniqueId: crypto.randomUUID()
     },
 
     {
       product_description: "Relaxed Fit Heavyweight Hoodie",
-      preview_image: "image/preview-image-6.avif",
+      preview_image: "/image/preview-image-6.avif",
       original_price: "$72.00",
       discount_price: "$44.00",
       detailed_description:
@@ -111,11 +113,11 @@ export default function ProductList() {
       total_buyer: 270,
       rating: 4.6,
       product_images: [
-        "image/preview-image-6.1.avif",
-        "image/preview-image-6.2.avif",
-        "image/preview-image-6.3.avif",
-        "image/preview-image-6.4.avif",
-        "image/preview-image-6.5.avif"
+        "/image/preview-image-6.1.avif",
+        "/image/preview-image-6.2.avif",
+        "/image/preview-image-6.3.avif",
+        "/image/preview-image-6.4.avif",
+        "/image/preview-image-6.5.avif"
       ],
       uniqueId: crypto.randomUUID()
     },
@@ -130,11 +132,11 @@ export default function ProductList() {
       total_buyer: 190,
       rating: 4.4,
       product_images: [
-        "image/preview-image-7.1.avif",
-        "image/preview-image-7.2.avif",
-        "image/preview-image-7.3.avif",
-        "image/preview-image-7.4.avif",
-        "image/preview-image-7.5.avif"
+        "/image/preview-image-7.1.avif",
+        "/image/preview-image-7.2.avif",
+        "/image/preview-image-7.3.avif",
+        "/image/preview-image-7.4.avif",
+        "/image/preview-image-7.5.avif"
       ],
       uniqueId: crypto.randomUUID()
     },
@@ -149,11 +151,11 @@ export default function ProductList() {
       total_buyer: 130,
       rating: 4.2,
       product_images: [
-        "image/preview-image-8.1.avif",
-        "image/preview-image-8.2.avif",
-        "image/preview-image-8.3.avif",
-        "image/preview-image-8.4.avif",
-        "image/preview-image-8.5.avif"
+        "/image/preview-image-8.1.avif",
+        "/image/preview-image-8.2.avif",
+        "/image/preview-image-8.3.avif",
+        "/image/preview-image-8.4.avif",
+        "/image/preview-image-8.5.avif"
       ],
       uniqueId: crypto.randomUUID()
     },
@@ -168,11 +170,11 @@ export default function ProductList() {
       total_buyer: 165,
       rating: 4.5,
       product_images: [
-        "image/preview-image-9.1.avif",
-        "image/preview-image-9.2.avif",
-        "image/preview-image-9.3.avif",
-        "image/preview-image-9.4.avif",
-        "image/preview-image-9.5.avif"
+        "/image/preview-image-9.1.avif",
+        "/image/preview-image-9.2.avif",
+        "/image/preview-image-9.3.avif",
+        "/image/preview-image-9.4.avif",
+        "/image/preview-image-9.5.avif"
       ],
       uniqueId: crypto.randomUUID()
     },
@@ -187,18 +189,18 @@ export default function ProductList() {
       total_buyer: 205,
       rating: 4.6,
       product_images: [
-        "image/preview-image-10.1.avif",
-        "image/preview-image-10.2.avif",
-        "image/preview-image-10.3.avif",
-        "image/preview-image-10.4.avif",
-        "image/preview-image-10.5.avif"
+        "/image/preview-image-10.1.avif",
+        "/image/preview-image-10.2.avif",
+        "/image/preview-image-10.3.avif",
+        "/image/preview-image-10.4.avif",
+        "/image/preview-image-10.5.avif"
       ],
       uniqueId: crypto.randomUUID()
     },
 
     {
       product_description: "Everyday Cotton Crew Neck Sweatshirt",
-      preview_image: "image/preview-image-11.avif",
+      preview_image: "/image/preview-image-11.avif",
       original_price: "$60.00",
       discount_price: "$35.00",
       detailed_description:
@@ -206,18 +208,18 @@ export default function ProductList() {
       total_buyer: 300,
       rating: 4.7,
       product_images: [
-        "image/preview-image-11.1.avif",
-        "image/preview-image-11.2.avif",
-        "image/preview-image-11.3.avif",
-        "image/preview-image-11.4.avif",
-        "image/preview-image-11.5.avif"
+        "/image/preview-image-11.1.avif",
+        "/image/preview-image-11.2.avif",
+        "/image/preview-image-11.3.avif",
+        "/image/preview-image-11.4.avif",
+        "/image/preview-image-11.5.avif"
       ],
       uniqueId: crypto.randomUUID()
     },
 
     {
       product_description: "Ribbed Zip-Up Mock Neck Sweater",
-      preview_image: "image/preview-image-12.avif",
+      preview_image: "/image/preview-image-12.avif",
       original_price: "$92.00",
       discount_price: "$58.00",
       detailed_description:
@@ -225,11 +227,11 @@ export default function ProductList() {
       total_buyer: 125,
       rating: 4.4,
       product_images: [
-        "image/preview-image-12.1.avif",
-        "image/preview-image-12.2.avif",
-        "image/preview-image-12.3.avif",
-        "image/preview-image-12.4.avif",
-        "image/preview-image-12.5.avif"
+        "/image/preview-image-12.1.avif",
+        "/image/preview-image-12.2.avif",
+        "/image/preview-image-12.3.avif",
+        "/image/preview-image-12.4.avif",
+        "/image/preview-image-12.5.avif"
       ],
       uniqueId: crypto.randomUUID()
     },
@@ -244,11 +246,11 @@ export default function ProductList() {
       total_buyer: 260,
       rating: 4.6,
       product_images: [
-        "image/preview-image-13.1.avif",
-        "image/preview-image-13.2.avif",
-        "image/preview-image-13.3.avif",
-        "image/preview-image-13.4.avif",
-        "image/preview-image-13.5.avif"
+        "/image/preview-image-13.1.avif",
+        "/image/preview-image-13.2.avif",
+        "/image/preview-image-13.3.avif",
+        "/image/preview-image-13.4.avif",
+        "/image/preview-image-13.5.avif"
       ],
       uniqueId: crypto.randomUUID()
     },
@@ -263,18 +265,18 @@ export default function ProductList() {
       total_buyer: 195,
       rating: 4.5,
       product_images: [
-        "image/preview-image-14.1.avif",
-        "image/preview-image-14.2.avif",
-        "image/preview-image-14.3.avif",
-        "image/preview-image-14.4.avif",
-        "image/preview-image-14.5.avif"
+        "/image/preview-image-14.1.avif",
+        "/image/preview-image-14.2.avif",
+        "/image/preview-image-14.3.avif",
+        "/image/preview-image-14.4.avif",
+        "/image/preview-image-14.5.avif"
       ],
       uniqueId: crypto.randomUUID()
     },
 
     {
       product_description: "Lightweight Packable Windbreaker",
-      preview_image: "image/preview-image-15.avif",
+      preview_image: "/image/preview-image-15.avif",
       original_price: "$85.00",
       discount_price: "$52.00",
       detailed_description:
@@ -282,18 +284,18 @@ export default function ProductList() {
       total_buyer: 140,
       rating: 4.3,
       product_images: [
-        "image/preview-image-15.1.avif",
-        "image/preview-image-15.2.avif",
-        "image/preview-image-15.3.avif",
-        "image/preview-image-15.4.avif",
-        "image/preview-image-15.5.avif"
+        "/image/preview-image-15.1.avif",
+        "/image/preview-image-15.2.avif",
+        "/image/preview-image-15.3.avif",
+        "/image/preview-image-15.4.avif",
+        "/image/preview-image-15.5.avif"
       ],
       uniqueId: crypto.randomUUID()
     },
 
     {
       product_description: "Everyday Relaxed Linen Blend Shirt",
-      preview_image: "image/preview-image-16.avif",
+      preview_image: "/image/preview-image-16.avif",
       original_price: "$72.00",
       discount_price: "$45.00",
       detailed_description:
@@ -301,18 +303,18 @@ export default function ProductList() {
       total_buyer: 150,
       rating: 4.4,
       product_images: [
-        "image/preview-image-16.1.avif",
-        "image/preview-image-16.2.avif",
-        "image/preview-image-16.3.avif",
-        "image/preview-image-16.4.avif",
-        "image/preview-image-16.5.avif"
+        "/image/preview-image-16.1.avif",
+        "/image/preview-image-16.2.avif",
+        "/image/preview-image-16.3.avif",
+        "/image/preview-image-16.4.avif",
+        "/image/preview-image-16.5.avif"
       ],
       uniqueId: crypto.randomUUID()
     },
 
     {
       product_description: "ThermoSoft Fleece Quarter Zip",
-      preview_image: "image/preview-image-17.avif",
+      preview_image: "/image/preview-image-17.avif",
       original_price: "$90.00",
       discount_price: "$56.00",
       detailed_description:
@@ -320,18 +322,18 @@ export default function ProductList() {
       total_buyer: 210,
       rating: 4.6,
       product_images: [
-        "image/preview-image-17.1.avif",
-        "image/preview-image-17.2.avif",
-        "image/preview-image-17.3.avif",
-        "image/preview-image-17.4.avif",
-        "image/preview-image-17.5.avif"
+        "/image/preview-image-17.1.avif",
+        "/image/preview-image-17.2.avif",
+        "/image/preview-image-17.3.avif",
+        "/image/preview-image-17.4.avif",
+        "/image/preview-image-17.5.avif"
       ],
       uniqueId: crypto.randomUUID()
     },
 
     {
       product_description: "Minimalist Heavyweight Long Sleeve Tee",
-      preview_image: "image/preview-image-18.avif",
+      preview_image: "/image/preview-image-18.avif",
       original_price: "$48.00",
       discount_price: "$29.00",
       detailed_description:
@@ -339,18 +341,18 @@ export default function ProductList() {
       total_buyer: 175,
       rating: 4.4,
       product_images: [
-        "image/preview-image-18.1.avif",
-        "image/preview-image-18.2.avif",
-        "image/preview-image-18.3.avif",
-        "image/preview-image-18.4.avif",
-        "image/preview-image-18.5.avif"
+        "/image/preview-image-18.1.avif",
+        "/image/preview-image-18.2.avif",
+        "/image/preview-image-18.3.avif",
+        "/image/preview-image-18.4.avif",
+        "/image/preview-image-18.5.avif"
       ],
       uniqueId: crypto.randomUUID()
     },
 
     {
       product_description: "Timeless Wool Blend Overcoat",
-      preview_image: "image/preview-image-19.avif",
+      preview_image: "/image/preview-image-19.avif",
       original_price: "$220.00",
       discount_price: "$145.00",
       detailed_description:
@@ -358,18 +360,18 @@ export default function ProductList() {
       total_buyer: 98,
       rating: 4.8,
       product_images: [
-        "image/preview-image-19.1.avif",
-        "image/preview-image-19.2.avif",
-        "image/preview-image-19.3.avif",
-        "image/preview-image-19.4.avif",
-        "image/preview-image-19.5.avif"
+        "/image/preview-image-19.1.avif",
+        "/image/preview-image-19.2.avif",
+        "/image/preview-image-19.3.avif",
+        "/image/preview-image-19.4.avif",
+        "/image/preview-image-19.5.avif"
       ],
       uniqueId: crypto.randomUUID()
     },
 
     {
       product_description: "TravelFlex Water-Resistant Cargo Pants",
-      preview_image: "image/preview-image-20.avif",
+      preview_image: "/image/preview-image-20.avif",
       original_price: "$88.00",
       discount_price: "$54.00",
       detailed_description:
@@ -377,21 +379,43 @@ export default function ProductList() {
       total_buyer: 160,
       rating: 4.5,
       product_images: [
-        "image/preview-image-20.1.avif",
-        "image/preview-image-20.2.avif",
-        "image/preview-image-20.3.avif",
-        "image/preview-image-20.4.avif",
-        "image/preview-image-20.5.avif"
+        "/image/preview-image-20.1.avif",
+        "/image/preview-image-20.2.avif",
+        "/image/preview-image-20.3.avif",
+        "/image/preview-image-20.4.avif",
+        "/image/preview-image-20.5.avif"
       ],
       uniqueId: crypto.randomUUID()
     }
   ];
 
-  const [productList, setProductList] = useState(initialList);
+  const currList = getProductList(initialList)
+  // state cho whole product list
+  const [productList, setProductList] = useState(currList);
+  //state of just settingMenuIndex, if index === openedMneuIndex -> turn on 3 concrete-options
   const [openedMenuIndex, setOpenedMenuIndex] = useState(null);
+
+  //state of delete index, if index === deletedIndex -> list.filter((_, index) => index != deletedIndex) to remove product with deletedIndex
   const [deletedIndex, setDeletedIndex] = useState(null);
   const [isDeleteOn, setIsDeleteOn] = useState(false);
 
+  //state of updated index
+  const [updateIndex, setUpdateIndex] = useState(null);
+  const [isUpdateOn, setIsUpdateOn] = useState(false);
+
+  const [updateNameInput, setUpdateNameInput] = useState('');
+  const [updateImageInput, setUpdateImageInput] = useState(null);
+  const [updateOriginalPrice, setUpdateOriginalPrice] = useState(null);
+  const [updateDiscountPrice, setUpdateDiscountPrice] = useState(null);
+  const [updateDetailedDescription, setUpdateDetailedDescription] = useState(null);
+  const [updateTotalBuyers, setUpdateTotalBuyers] = useState(null);
+  const [updateOverallRating, setUpdateOverallRating] = useState(null);
+
+  console.log(JSON.parse(localStorage.getItem("LIST_KEY")))
+
+
+
+  //responsible for handling and toggling the menu button to turn on and off 3 concrete options bro
   function handleMenuButton(index) {
     setOpenedMenuIndex(prevIndex => {
       return prevIndex === index ? null : index;
@@ -416,9 +440,71 @@ export default function ProductList() {
     setOpenedMenuIndex(null);
     // set state nốt của product để loại bỏ cái sản phẩm đó
 
-    setProductList((list) => {
-      return list.filter((_, index) => index != deletedIndex) // nếu mà () => {} thì bắt buojc phải có return, còn nếu không có {} thì không cần return vì là nó implicitly retunr rồi còn nếu mà không có thì thôi không cần phải return nhé
-    })
+    const newList = deleteProduct(deletedIndex);
+    setProductList(newList);
+    setDeletedIndex(null);
+  }
+
+  function handleUpdateButton(index) {
+    //turn off the menu button
+    setOpenedMenuIndex(null);
+    setIsUpdateOn(true);
+    setUpdateIndex(index);
+    const currentList = getProductList(productList);
+    console.log(currentList);
+
+    //product-name input
+    setUpdateNameInput(currentList[index].product_description);
+    console.log(updateNameInput);
+
+    //preview-image input
+    setUpdateImageInput(currentList[index].preview_image);
+    console.log(currentList[index].preview_image);
+
+    //original-price input
+    setUpdateOriginalPrice(currentList[index].original_price);
+    console.log(updateOriginalPrice);
+
+    //discount-price input
+    setUpdateDiscountPrice(currentList[index].discount_price);
+    console.log(updateDiscountPrice);
+
+    //detailed-description input
+    setUpdateDetailedDescription(currentList[index].detailed_description);
+    console.log(setUpdateDetailedDescription); // nó sẽ bị chậm hơn so với index thật 1 lần render
+
+    //buyers input
+    setUpdateTotalBuyers(currentList[index].total_buyer);
+
+    // overall-rating input
+    setUpdateOverallRating(currentList[index].rating);
+  }
+
+  function handleCancelUpdate() {
+    setUpdateIndex(null);
+    setIsUpdateOn(false);
+    setOpenedMenuIndex(null);
+  }
+
+  function handleConfirmUpdate() {
+    setUpdateIndex(null);
+    setIsUpdateOn(false);
+    setOpenedMenuIndex(null);
+
+    const updatedProduct = {
+      product_description: updateNameInput,
+      preview_image: updateImageInput,
+      original_price: updateOriginalPrice,
+      discount_price: updateDiscountPrice,
+      detailed_description: updateDetailedDescription,
+      total_buyer: updateTotalBuyers,
+      rating: updateOverallRating
+    }
+
+    const updatedList = updateList(updatedProduct, updateIndex);
+    setProductList(updatedList);
+
+    
   }
 
   return (
@@ -442,12 +528,20 @@ export default function ProductList() {
                   {index === openedMenuIndex && (
                     <div className='concrete-options'>
                       <div className="options-button view-button"> Quick view !</div>
-                      <div className="options-button update-button"> Update product !</div>
+
+                      <div className="options-button update-button" onClick={(e) => {
+                        e.stopPropagation();
+                        console.log(e.target);
+                        handleUpdateButton(index);
+                      }}> Update product !
+                      </div>
+
                       <div className="options-button delete-button" onClick={(e) => {
                         console.log(e.target);
                         e.stopPropagation();
                         handleDeleteButton(index);
-                      }}> Delete product !
+                      }}>
+                        Delete product !
                       </div>
                     </div>
                   )}
@@ -469,18 +563,18 @@ export default function ProductList() {
 
       {isDeleteOn && (
         <div className="popup-overlay">
-          <div className="delete-items-overlay">
-            <h2 style={{paddingLeft: "10px", marginBottom: "0px", fontSize: "28px"}}>
+          <div className="delete-items-overlay showcase">
+            <h2 style={{ paddingLeft: "10px", marginBottom: "0px", fontSize: "28px" }}>
               Delete items
             </h2>
             <p
               style={{
-            fontSize: "15px",
-            paddingBottom: "6px",
-            color: "gray",
-            paddingLeft: "6px",
-            fontFamily:"sans-serif"
-          }}
+                fontSize: "17px",
+                paddingBottom: "6px",
+                color: "",
+                paddingLeft: "6px",
+                fontFamily: "ui-sans-serif"
+              }}
             >
               Are you sure to delete this item from product list ? Please note that
               this action cannot be restored
@@ -495,6 +589,107 @@ export default function ProductList() {
                 handleConfirmDelete();
               }}>Delete</button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {isUpdateOn && (
+        <div className='popup-overlay'>
+          <div className="update-items-overlay showcase">
+            <form className="update-items-form">
+              <h2 style={{ display: "flex", justifyContent: "center" }}>Update Product</h2>
+              <label>
+                Product name
+                <input
+                  className="product-name"
+                  type="text"
+                  placeholder="Enter the product name:"
+                  value={updateNameInput}
+                  onChange={(e) => {
+                    console.log(e.target.value);
+                    return setUpdateNameInput(e.target.value);
+                  }}
+                />
+              </label>
+
+              <label>
+                Preview image(Enter the URL)
+                <input
+                  className="preview-image"
+                  type="text"
+                  placeholder="Enter the preview-image"
+                  value={updateImageInput}
+                  onChange={(e) => { setUpdateImageInput(e.target.value) }}
+                />
+              </label>
+
+              <div className="price-group">
+                <label>
+                  Original Price:
+                  <input
+                    className="original-price"
+                    type="text"
+                    value={updateOriginalPrice}
+                    onChange={(e) => { setUpdateOriginalPrice(e.target.value) }}
+                  />
+                </label>
+
+                <label>
+                  Discount Price:
+                  <input className="discount-price"
+                    type="text"
+                    value={updateDiscountPrice}
+                    onChange={(e) => { setUpdateDiscountPrice(e.target.value) }}
+
+
+                  />
+                </label>
+              </div>
+
+              <label>
+                Product full description
+                <textarea
+                  className="detailed_description"
+                  value={updateDetailedDescription}
+                  onChange={(e) => { setUpdateDetailedDescription(e.target.value) }}
+                ></textarea>
+
+
+              </label>
+
+              <div className="user-exp">
+                <label>
+                  Total buyers
+                  <input
+                    type="text"
+                    value={updateTotalBuyers}
+                    onChange={(e) => { setUpdateTotalBuyers(e.target.value) }} />
+                </label>
+
+                <label>
+                  Rating
+                  <input type="text"
+                    value={updateOverallRating}
+                    onChange={(e) => { setUpdateOverallRating(e.target.value) }} />
+                </label>
+              </div>
+
+              <div className="confirm-update-actions">
+                <button
+                  className="cancel-update-button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleCancelUpdate();
+                  }}
+                >Cancel</button>
+                <button
+                  className="confirm-update-button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleConfirmUpdate();
+                  }}>Update !</button>
+              </div>
+            </form>
           </div>
         </div>
       )}

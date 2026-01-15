@@ -1,3 +1,19 @@
+.popup-overlay{
+        display:flex;
+        position:fixed;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        background: rgba(0, 0, 0, 0.7);
+        z-index:9999;
+        align-items:center;
+        justify-content: center;
+      }
+        .no-scroll{
+        height: 100%;
+        overflow:hidden;
+      }
     .update-items-overlay {
         max-width: 520px;
         margin: auto;
@@ -5,7 +21,6 @@
         padding: 24px 28px;
         border-radius: 12px;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-        display:none;
       }
 
       .update-items-overlay.showcase{
