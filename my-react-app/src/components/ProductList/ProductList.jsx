@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ProductTypes from "../ProductTypes/ProductType.jsx"
 import "./ProductList.css";
+import "./Delete.css";
 
 export default function ProductList() {
 
@@ -15,11 +16,11 @@ export default function ProductList() {
       total_buyer: 240,
       rating: 4.7,
       product_images: [
-        "image/preview-image-1.1.avif",
-        "image/preview-image-1.2.avif",
-        "image/preview-image-1.3.avif",
-        "image/preview-image-1.4.avif",
-        "image/preview-image-1.5.avif"
+        "/image/preview-image-1.1.avif",
+        "/image/preview-image-1.2.avif",
+        "/image/preview-image-1.3.avif",
+        "/image/preview-image-1.4.avif",
+        "/image/preview-image-1.5.avif"
       ],
       uniqueId: crypto.randomUUID()
     },
@@ -392,7 +393,9 @@ export default function ProductList() {
   const [isDeleteOn, setIsDeleteOn] = useState(false);
 
   function handleMenuButton(index) {
-    setOpenedMenuIndex(index);
+    setOpenedMenuIndex(prevIndex => {
+      return prevIndex === index ? null : index;
+    });
   }
 
   //this function is responsible for 1. TURNING ON THE POPUP OVERLAY and 2. GET THE INDEX OF THE DELETED VALUE
@@ -414,7 +417,7 @@ export default function ProductList() {
     // set state nốt của product để loại bỏ cái sản phẩm đó
 
     setProductList((list) => {
-      list.filter((_, index) => index != deletedIndex) // nếu mà () => {} thì bắt buojc phải có return, còn nếu không có {} thì không cần return vì là nó implicitly retunr rồi còn nếu mà không có thì thôi không cần phải return nhé
+      return list.filter((_, index) => index != deletedIndex) // nếu mà () => {} thì bắt buojc phải có return, còn nếu không có {} thì không cần return vì là nó implicitly retunr rồi còn nếu mà không có thì thôi không cần phải return nhé
     })
   }
 
@@ -441,6 +444,7 @@ export default function ProductList() {
                       <div className="options-button view-button"> Quick view !</div>
                       <div className="options-button update-button"> Update product !</div>
                       <div className="options-button delete-button" onClick={(e) => {
+                        console.log(e.target);
                         e.stopPropagation();
                         handleDeleteButton(index);
                       }}> Delete product !
@@ -466,18 +470,17 @@ export default function ProductList() {
       {isDeleteOn && (
         <div className="popup-overlay">
           <div className="delete-items-overlay">
-            <h2 style="padding-left: 10px; margin-bottom: 0px; font-size: 28px">
+            <h2 style={{paddingLeft: "10px", marginBottom: "0px", fontSize: "28px"}}>
               Delete items
             </h2>
             <p
-              style="
-            font-size: 15px;
-            padding-bottom: 6px;
-            color: gray;
-            padding-left: 6px;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-              'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-          "
+              style={{
+            fontSize: "15px",
+            paddingBottom: "6px",
+            color: "gray",
+            paddingLeft: "6px",
+            fontFamily:"sans-serif"
+          }}
             >
               Are you sure to delete this item from product list ? Please note that
               this action cannot be restored
