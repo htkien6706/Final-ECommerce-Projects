@@ -3,9 +3,10 @@ import ProductTypes from "../ProductTypes/ProductType.jsx"
 import "./ProductList.css";
 import "./Delete.css";
 import "./Update.css";
-import { LIST_KEY, deleteProduct, updateList } from '../../services/ProductStorage.jsx';
+import "./Add.css";
+import { LIST_KEY, deleteProduct, updateList, addProduct } from '../../services/ProductStorage.jsx';
 
-export default function ProductList({productList, setProductList}) {
+export default function ProductList({ productList, setProductList, isAddingOn, setIsAddingOn }) {
   //state of just settingMenuIndex, if index === openedMneuIndex -> turn on 3 concrete-options
   const [openedMenuIndex, setOpenedMenuIndex] = useState(null);
 
@@ -25,7 +26,15 @@ export default function ProductList({productList, setProductList}) {
   const [updateTotalBuyers, setUpdateTotalBuyers] = useState(null);
   const [updateOverallRating, setUpdateOverallRating] = useState(null);
 
-  console.log(JSON.parse(localStorage.getItem("LIST_KEY")))
+
+  const [addNameInput, setAddNameInput] = useState(null);
+  const [addImageInput, setAddImageInput] = useState(productList[0].preview_image);
+  const [addOriginalPriceInput, setAddOriginalPriceInput] = useState(null);
+  const [addDiscountPriceInput, setAddDiscountPriceInput] = useState(null);
+  const [addDetailedDescriptionInput, setAddDetailedDescriptionInput] = useState(null);
+  const [addTotalBuyersInput, setAddTotalBuyersInput] = useState(0);
+  const [addRatingInput, setAddRatingInput] = useState(0);
+
 
 
 
@@ -117,8 +126,31 @@ export default function ProductList({productList, setProductList}) {
     const updatedList = updateList(productList, updatedProduct, updateIndex);
     setProductList(updatedList);
 
-    
+
   }
+
+  function handleAddAction() {
+    return setIsAddingOn(false);
+  }
+
+  function handleConfirmAddAction() {
+    const newProduct = {
+      product_description : addNameInput,
+      preview_image: addImageInput,
+      original_price : addOriginalPriceInput,
+      discount_price : addDiscountPriceInput,
+      detailed_description : addDetailedDescriptionInput,
+      total_buyer : addTotalBuyersInput,
+      rating : addRatingInput,
+      uniqueId: crypto.randomUUID()
+    }
+
+    //update the state of the product list 
+    return setProductList(previousList => {
+      return addProduct(previousList, newProduct);
+    });
+  }
+
 
   return (
     <>
@@ -305,6 +337,107 @@ export default function ProductList({productList, setProductList}) {
             </form>
           </div>
         </div>
+      )}
+
+      {isAddingOn && (
+        <div className='popup-overlay'>
+          <div className="add-items-overlay showcase">
+            <form className="add-items-form">
+              <h2 style={{ display: "flex", justifyContent: "center" }}>Add Product</h2>
+              <label>
+                Product name
+                <input
+                  className="product-name"
+                  type="text"
+                  placeholder="Enter the product name:"
+                  value={addNameInput}
+                  onChange={(e) => {return setAddNameInput(e.target.value)}}
+                />
+              </label>
+
+              <label>
+                Preview image(Enter the URL)
+                <input
+                  className="preview-image"
+                  type="text"
+                  placeholder="Enter the preview-image"
+                  value={addImageInput}
+                  onChange={(e) => setAddImageInput(e.target.value)}
+                />
+              </label>
+
+              <div className="price-group">
+                <label>
+                  Original Price:
+                  <input
+                    className="original-price"
+                    type="text"
+                    value={addOriginalPriceInput}
+                    onChange={e => setAddOriginalPriceInput(e.target.value)} />
+                </label>
+
+                <label>
+                  Discount Price:
+                  <input
+                    className="discount-price"
+                    type="text"
+                    value={addDiscountPriceInput}
+                    onChange={e => setAddDiscountPriceInput(e.target.value)} />
+                </label>
+              </div>
+
+              <label>
+                Product full description
+                <textarea 
+                className="detailed_description"
+                value={addDetailedDescriptionInput}
+                onChange={e => setAddDetailedDescriptionInput(e.target.value)}></textarea>
+              </label>
+
+              <div className="user-exp">
+                <label>
+                  Total buyers
+                  <input type="text"
+                    value={addTotalBuyersInput}
+                    onChange={e => setAddTotalBuyersInput(e.target.value)} />
+                </label>
+
+                <label>
+                  Rating
+                  <input
+                    type="text"
+                    value={addRatingInput}
+                    onChange={(e) => {
+                      console.log(e.target.value);
+                      return setAddRatingInput(e.target.value);
+                    }} />
+
+                </label>
+              </div>
+
+              <div className="confirm-actions">
+                <button
+                  className="cancel-add-button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleAddAction();
+                  }}>
+                  Cancel
+
+                </button>
+                <button
+                  className="confirm-add-button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleConfirmAddAction();
+                  }}
+                >Add products !
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
       )}
 
     </>

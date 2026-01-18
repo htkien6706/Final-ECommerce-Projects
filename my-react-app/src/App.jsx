@@ -393,18 +393,31 @@ export default function App() {
     return data ? JSON.parse(data) : initialList;
   });
 
+  //state for adding items
+  const [isAddingOn, setIsAddingOn] = useState(false);
+
   //productList updated -> localStorage automatically trigger UI update
   useEffect(() => {
     localStorage.setItem(LIST_KEY, JSON.stringify(productList))
+    console.log(productList);
   }, [productList]);
+
+  useEffect(() => {
+    console.log(isAddingOn ? "Overlay is turned on" : "The overlay is turned off")
+  }, [isAddingOn])
 
   return (
     <>
-      <Header />
+      <Header 
+      setIsAddingOn = {setIsAddingOn}
+      />
+
       <IntroPicture />
       <ProductList
         productList={productList}
         setProductList={setProductList}
+        isAddingOn = {isAddingOn}
+        setIsAddingOn = {setIsAddingOn}
       />
     </>
   )
