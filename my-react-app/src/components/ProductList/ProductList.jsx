@@ -3,11 +3,9 @@ import ProductTypes from "../ProductTypes/ProductType.jsx"
 import "./ProductList.css";
 import "./Delete.css";
 import "./Update.css";
-import { LIST_KEY, deleteProduct, addProduct, updateList, getProductList } from '../../services/ProductStorage.jsx';
+import { LIST_KEY, deleteProduct, updateList } from '../../services/ProductStorage.jsx';
 
-export default function ProductList({productList, setProductList, isAddingOn, setIsAddingOn}) {
-
- 
+export default function ProductList({productList, setProductList}) {
   //state of just settingMenuIndex, if index === openedMneuIndex -> turn on 3 concrete-options
   const [openedMenuIndex, setOpenedMenuIndex] = useState(null);
 
@@ -56,7 +54,7 @@ export default function ProductList({productList, setProductList, isAddingOn, se
     setOpenedMenuIndex(null);
     // set state nốt của product để loại bỏ cái sản phẩm đó
 
-    const newList = deleteProduct(deletedIndex);
+    const newList = deleteProduct(productList, deletedIndex)
     setProductList(newList);
     setDeletedIndex(null);
   }
@@ -66,34 +64,33 @@ export default function ProductList({productList, setProductList, isAddingOn, se
     setOpenedMenuIndex(null);
     setIsUpdateOn(true);
     setUpdateIndex(index);
-    const currentList = getProductList(productList);
-    console.log(currentList);
+    console.log(productList);
 
     //product-name input
-    setUpdateNameInput(currentList[index].product_description);
+    setUpdateNameInput(productList[index].product_description);
     console.log(updateNameInput);
 
     //preview-image input
-    setUpdateImageInput(currentList[index].preview_image);
-    console.log(currentList[index].preview_image);
+    setUpdateImageInput(productList[index].preview_image);
+    console.log(productList[index].preview_image);
 
     //original-price input
-    setUpdateOriginalPrice(currentList[index].original_price);
+    setUpdateOriginalPrice(productList[index].original_price);
     console.log(updateOriginalPrice);
 
     //discount-price input
-    setUpdateDiscountPrice(currentList[index].discount_price);
+    setUpdateDiscountPrice(productList[index].discount_price);
     console.log(updateDiscountPrice);
 
     //detailed-description input
-    setUpdateDetailedDescription(currentList[index].detailed_description);
+    setUpdateDetailedDescription(productList[index].detailed_description);
     console.log(setUpdateDetailedDescription); // nó sẽ bị chậm hơn so với index thật 1 lần render
 
     //buyers input
-    setUpdateTotalBuyers(currentList[index].total_buyer);
+    setUpdateTotalBuyers(productList[index].total_buyer);
 
     // overall-rating input
-    setUpdateOverallRating(currentList[index].rating);
+    setUpdateOverallRating(productList[index].rating);
   }
 
   function handleCancelUpdate() {
@@ -117,7 +114,7 @@ export default function ProductList({productList, setProductList, isAddingOn, se
       rating: updateOverallRating
     }
 
-    const updatedList = updateList(updatedProduct, updateIndex);
+    const updatedList = updateList(productList, updatedProduct, updateIndex);
     setProductList(updatedList);
 
     

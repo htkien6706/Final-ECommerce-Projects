@@ -1,8 +1,8 @@
 import Header from "./components/Header/Header.jsx";
 import IntroPicture from "./components/IntroPicture/IntroPart.jsx";
 import ProductList from "./components/ProductList/ProductList.jsx";
-import { getProductList } from "./services/ProductStorage.jsx";
-import { useState } from "react";
+import { useState, useEffect } from 'react'
+import { LIST_KEY } from "./services/ProductStorage.jsx";
 
 export default function App() {
   const initialList = [
@@ -387,11 +387,17 @@ export default function App() {
     }
   ];
 
-  const currList = getProductList(initialList)
   // state cho whole product list
-  const [productList, setProductList] = useState(currList);
-  const [isAddingOn, setIsAddingOn] = useState(false);
-  
+  const [productList, setProductList] = useState(() => {
+    const data = localStorage.getItem(LIST_KEY);
+    return data ? JSON.parse(data) : initialList;
+  });
+
+  //productList updated -> localStorage automatically trigger UI update
+  useEffect(() => {
+    localStorage.setItem(LIST_KEY, JSON.stringify(productList))
+  }, [productList]);
+
   return (
     <>
       <Header />
@@ -399,8 +405,6 @@ export default function App() {
       <ProductList
         productList={productList}
         setProductList={setProductList}
-        isAddingOn={isAddingOn}
-        setIsAddingOn={setIsAddingOn}
       />
     </>
   )
