@@ -4,6 +4,7 @@ import "./ProductList.css";
 import "./Delete.css";
 import "./Update.css";
 import "./Add.css";
+import "./Rating.css"
 import { LIST_KEY, deleteProduct, updateList, addProduct } from '../../services/ProductStorage.jsx';
 
 export default function ProductList({ productList, setProductList, isAddingOn, setIsAddingOn }) {
@@ -195,10 +196,19 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
 
                 <div className="product-description">
                   <p>{product.product_description}</p>
+                  <div className='overall-rating' style={{"--rating": product.rating}}>
+                    <span className='stars-background'>★★★★★</span>
+                    <span className='stars-foreground'>★★★★★</span>
+                  </div>
+
+                  <span className='display-rating' style={{marginLeft: "5px"}}> {(`(${product.rating})`)}</span>
+
                   <p>
                     <span className='original-price'> {product.original_price} </span>
                     <span className='discount-price'> {product.discount_price}</span>
                   </p>
+
+                  <p className='cnt-buyers' style={{fontSize: "17px"}}> Total sold: {product.total_buyer}</p>
                 </div>
               </li>
             )

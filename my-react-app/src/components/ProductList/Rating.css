@@ -1,0 +1,24 @@
+.overall-rating{
+    display:inline-block;
+    --maxRating: 5;
+    --fillPercentage: calc(var(--rating) / var(--maxRating) * 100%);
+    position: relative;
+}
+
+.stars-background{
+    color: gray;
+    inset:0;
+    font-size: 24px;
+}
+
+.stars-foreground{
+    color:#f5b301;
+    position: absolute;
+    top:0;
+    left:0;
+    font-size: 24px;
+    width: var(--fillPercentage);
+    display:inline-block;
+    overflow:hidden;
+}
+
