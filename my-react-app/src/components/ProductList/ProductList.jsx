@@ -12,27 +12,27 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
   const [openedMenuIndex, setOpenedMenuIndex] = useState(null);
 
   //state of delete index, if index === deletedIndex -> list.filter((_, index) => index != deletedIndex) to remove product with deletedIndex
-  const [deletedIndex, setDeletedIndex] = useState(null);
+  const [deletedIndex, setDeletedIndex] = useState('');
   const [isDeleteOn, setIsDeleteOn] = useState(false);
 
   //state of updated index
-  const [updateIndex, setUpdateIndex] = useState(null);
+  const [updateIndex, setUpdateIndex] = useState('');
   const [isUpdateOn, setIsUpdateOn] = useState(false);
 
   const [updateNameInput, setUpdateNameInput] = useState('');
-  const [updateImageInput, setUpdateImageInput] = useState(null);
-  const [updateOriginalPrice, setUpdateOriginalPrice] = useState(null);
-  const [updateDiscountPrice, setUpdateDiscountPrice] = useState(null);
-  const [updateDetailedDescription, setUpdateDetailedDescription] = useState(null);
-  const [updateTotalBuyers, setUpdateTotalBuyers] = useState(null);
-  const [updateOverallRating, setUpdateOverallRating] = useState(null);
+  const [updateImageInput, setUpdateImageInput] = useState('');
+  const [updateOriginalPrice, setUpdateOriginalPrice] = useState('');
+  const [updateDiscountPrice, setUpdateDiscountPrice] = useState('');
+  const [updateDetailedDescription, setUpdateDetailedDescription] = useState('');
+  const [updateTotalBuyers, setUpdateTotalBuyers] = useState('');
+  const [updateOverallRating, setUpdateOverallRating] = useState('');
 
 
-  const [addNameInput, setAddNameInput] = useState(null);
+  const [addNameInput, setAddNameInput] = useState('');
   const [addImageInput, setAddImageInput] = useState(productList[0].preview_image);
-  const [addOriginalPriceInput, setAddOriginalPriceInput] = useState(null);
-  const [addDiscountPriceInput, setAddDiscountPriceInput] = useState(null);
-  const [addDetailedDescriptionInput, setAddDetailedDescriptionInput] = useState(null);
+  const [addOriginalPriceInput, setAddOriginalPriceInput] = useState('');
+  const [addDiscountPriceInput, setAddDiscountPriceInput] = useState('');
+  const [addDetailedDescriptionInput, setAddDetailedDescriptionInput] = useState('');
   const [addTotalBuyersInput, setAddTotalBuyersInput] = useState(0);
   const [addRatingInput, setAddRatingInput] = useState(0);
 
