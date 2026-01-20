@@ -3,6 +3,7 @@ import "./Header.css"
 import webImage from "../../assets/image/web-name.png"
 import userIcon from "../../assets/image/user-icon.jpg"
 import userCart from "../../assets/image/cart-icon.jpg"
+import { useNavigate } from 'react-router-dom'
 
 export default function Header({setIsAddingOn }) {
   return (
@@ -46,9 +47,18 @@ function Shipping() {
 }
 
 function WebName() {
+  const navigate = useNavigate();
+
   return (
     <div className="web-name" style={{ display: "flex", alignItems: "center" }}>
-      <img id="web-image" src={webImage} alt='Picture is in loading' />
+      <img 
+      id="web-image" 
+      src={webImage} 
+      alt='Picture is in loading' 
+      onClick={(e) => {
+        e.stopPropagation();
+        navigate("/");
+      }}/>
     </div>
   );
 }

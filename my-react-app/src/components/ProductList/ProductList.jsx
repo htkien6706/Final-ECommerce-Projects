@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import ProductTypes from "../ProductTypes/ProductType.jsx"
 import "./ProductList.css";
 import "./Delete.css";
@@ -8,6 +11,9 @@ import "./Rating.css"
 import { LIST_KEY, deleteProduct, updateList, addProduct } from '../../services/ProductStorage.jsx';
 
 export default function ProductList({ productList, setProductList, isAddingOn, setIsAddingOn }) {
+  const navigate = useNavigate();
+
+
   //state of just settingMenuIndex, if index === openedMneuIndex -> turn on 3 concrete-options
   const [openedMenuIndex, setOpenedMenuIndex] = useState(null);
 
@@ -173,7 +179,16 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
 
                   {index === openedMenuIndex && (
                     <div className='concrete-options'>
-                      <div className="options-button view-button"> Quick view !</div>
+                      <div 
+                      // mình phải khai báo dynamic route ở phần browersrouter, routes, và route, nên khi navigate qua cái chỗ này thì dùng useParams để lấy phần slug = index để mà render
+                      className="options-button view-button" 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(`/Product/${index}`);
+                        console.log(index);
+                      }}> Quick view !
+                      
+                      </div>
 
                       <div className="options-button update-button" onClick={(e) => {
                         e.stopPropagation();
@@ -440,6 +455,7 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
                   onClick={(e) => {
                     e.preventDefault();
                     handleConfirmAddAction();
+                    setIsAddingOn(false);
                   }}
                 >Add products !
                 </button>
