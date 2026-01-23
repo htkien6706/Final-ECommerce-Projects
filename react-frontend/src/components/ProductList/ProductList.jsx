@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import ProductTypes from "../ProductTypes/ProductType.jsx"
 import "./ProductList.css";
@@ -35,7 +36,7 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
 
 
   const [addNameInput, setAddNameInput] = useState('');
-  const [addImageInput, setAddImageInput] = useState(productList[0].preview_image);
+  const [addImageInput, setAddImageInput] = useState('');
   const [addOriginalPriceInput, setAddOriginalPriceInput] = useState('');
   const [addDiscountPriceInput, setAddDiscountPriceInput] = useState('');
   const [addDetailedDescriptionInput, setAddDetailedDescriptionInput] = useState('');
@@ -43,6 +44,11 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
   const [addRatingInput, setAddRatingInput] = useState(0);
 
 
+  useEffect(() => {
+    if(productList.length > 0) {
+      return setAddImageInput(productList[0].preview_image);
+    }
+  }, []);
 
 
   //responsible for handling and toggling the menu button to turn on and off 3 concrete options bro
@@ -70,8 +76,14 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
     setOpenedMenuIndex(null);
     // set state nốt của product để loại bỏ cái sản phẩm đó
 
-    const newList = deleteProduct(productList, deletedIndex)
-    setProductList(newList);
+    fetch("http://localhost:3000/api/product", {
+      method:"DELETE",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify(productList[deletedIndex])
+    }).then(response => response.json()).then(data => setProductList(data));
+
     setDeletedIndex(null);
   }
 
@@ -127,13 +139,23 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
       discount_price: updateDiscountPrice,
       detailed_description: updateDetailedDescription,
       total_buyer: updateTotalBuyers,
-      rating: updateOverallRating
+      rating: updateOverallRating,
+      uniqueId: productList[updateIndex].uniqueId
     }
 
     const updatedList = updateList(productList, updatedProduct, updateIndex);
     setProductList(updatedList);
 
+    //cannot permanently update without database
+    fetch("http://localhost:3000/api/product", {
+      method:"PUT",
+      headers: {
+        "Content-Type" : "application/json"
+      },
 
+      body: JSON.stringify(updatedProduct),
+
+    }).then(response => response.json()).then(data => setProductList(data)).catch(err => console.error("Updated failed:", err))
   }
 
   function handleAddAction() {

@@ -3,7 +3,7 @@ import { Get, Put, Delete, Post, Controller, Body } from '@nestjs/common';
 import { Product } from './interfaces/product.interface';
 import { CreateProductDto } from './dto/create-product.dto';
 
-@Controller('api/product/')
+@Controller('api/product')
 export class ProductController {
   constructor(private productService: ProductService) {}
 
