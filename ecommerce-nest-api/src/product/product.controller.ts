@@ -1,29 +1,42 @@
 import { ProductService } from './product.service';
-import { Get, Put, Delete, Post, Controller, Body } from '@nestjs/common';
-import { Product } from './interfaces/product.interface';
+import {
+  Get,
+  Put,
+  Delete,
+  Post,
+  Controller,
+  Body,
+  Param,
+} from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
+import { ProductEntity } from './product.entity';
 
 @Controller('api/product')
 export class ProductController {
   constructor(private productService: ProductService) {}
 
-  @Get() // equivalent to READ method in CRUD
-  findAll(): Product[] {
-    return this.productService.findAll();
+  @Get() // get all product->serve VIEW in CRUD
+  async findAll(): Promise<ProductEntity[]> {
+    const products = await this.productService.findAll();
+    console.log(products.length);
+    return products;
   }
 
-  @Post() // equivalent to CREATE method in CRUD
-  create(@Body() dto: CreateProductDto): Product[] {
-    return this.productService.create(dto);
+  @Post() // create new product, same with CREATE op in CRUD
+  async create(@Body() dto: CreateProductDto): Promise<ProductEntity> {
+    const addedProduct = await this.productService.create(dto);
+    console.log(addedProduct);
+
+    return addedProduct; // return just the addedProduct
   }
 
-  @Put() // equivalent to UPDATE method in CRUD
-  update(@Body() dto: CreateProductDto): Product[] {
-    return this.productService.update(dto, dto.uniqueId);
+  @Put(':id') // update the product, same with UPDATE op in CRUD
+  async update(@Body() dto: CreateProductDto): Promise<ProductEntity> {
+    return this.productService.update(dto);
   }
 
-  @Delete() // eqiuvalent to DELTE method in CRUD
-  delete(@Body() dto: CreateProductDto): Product[] {
-    return this.productService.remove(dto.uniqueId);
+  @Delete(':id') // delete the product according to its uniqueId, same with DELETE Operation in CRUD
+  async remove(@Param('id') id: string) {
+    return this.productService.remove(id);
   }
 }

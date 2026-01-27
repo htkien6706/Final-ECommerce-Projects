@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 import ProductTypes from "../ProductTypes/ProductType.jsx"
 import "./ProductList.css";
@@ -9,7 +8,7 @@ import "./Delete.css";
 import "./Update.css";
 import "./Add.css";
 import "./Rating.css"
-import { LIST_KEY, deleteProduct, updateList, addProduct } from '../../services/ProductStorage.jsx';
+import { LIST_KEY, addProduct } from '../../services/ProductStorage.jsx';
 
 export default function ProductList({ productList, setProductList, isAddingOn, setIsAddingOn }) {
   const navigate = useNavigate();
@@ -75,14 +74,21 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
     setIsDeleteOn(false);
     setOpenedMenuIndex(null);
     // set state nốt của product để loại bỏ cái sản phẩm đó
+    const currentUniqueId = productList[deletedIndex].uniqueId;
 
-    fetch("http://localhost:3000/api/product", {
+    //delete product based on id
+    fetch(`http://localhost/api/product/${currentUniqueId}`, {
       method:"DELETE",
-      headers:{
+      headers: {
         "Content-Type":"application/json"
-      },
-      body: JSON.stringify(productList[deletedIndex])
-    }).then(response => response.json()).then(data => setProductList(data));
+      }
+    }).then(response => response.json())
+    .then(data => {
+      console.log(data.message);
+      //update the UI after deleting item in fe
+      setProductList(l => l.filter(product => product.uniqueId != currentUniqueId))
+    })
+    
 
     setDeletedIndex(null);
   }
@@ -143,11 +149,8 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
       uniqueId: productList[updateIndex].uniqueId
     }
 
-    const updatedList = updateList(productList, updatedProduct, updateIndex);
-    setProductList(updatedList);
-
     //cannot permanently update without database
-    fetch("http://localhost:3000/api/product", {
+    fetch(`http::/localhost/api/product/${updatedProduct.uniqueId}`, {
       method:"PUT",
       headers: {
         "Content-Type" : "application/json"
@@ -175,8 +178,16 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
     }
 
     //update the state of the product list 
-    return setProductList(previousList => {
-      return addProduct(previousList, newProduct);
+    fetch("http://localhost/api/product", {
+      method:"POST",
+      headers: {
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify(newProduct)
+    })
+    .then(response => response.json())
+    .then(data => {
+      setProductList(l => [...l, data])
     });
   }
 

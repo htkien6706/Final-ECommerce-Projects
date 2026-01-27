@@ -15,8 +15,13 @@ export default function App() {
 
   //call API for GET HTTP methods
   useEffect(() => {
-    fetch("http://localhost:3000/api/product").then(response => response.json()).then(data => setProductList(data))
-  }, []);
+    fetch("http::/localhost/api/product")
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      console.log("Data has been fetched for the first time here!")
+    })
+  }, [])
 
   //productList updated -> localStorage automatically trigger UI update
   useEffect(() => {
