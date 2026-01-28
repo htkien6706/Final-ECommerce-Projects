@@ -25,7 +25,7 @@ export class ProductService {
   }
 
   async remove(id: string): Promise<{ message: string }> {
-    const res = await this.productRepository.delete(id);
+    const res = await this.productRepository.delete({ uniqueId: id });
     if (res.affected === 0) {
       throw new Error('Cannot found !');
     }

@@ -3,7 +3,6 @@ import HomePage from "./Pages/HomePage.jsx";
 import { useState, useEffect } from 'react'
 import { LIST_KEY } from "./services/ProductStorage.jsx";
 import ProductPage from "./Pages/ProductPage.jsx";
-import axios from "axios";
 
 export default function App() {
   // state cho whole product list
@@ -15,11 +14,11 @@ export default function App() {
 
   //call API for GET HTTP methods
   useEffect(() => {
-    fetch("http::/localhost/api/product")
+    fetch("http://localhost:3000/api/product")
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      console.log("Data has been fetched for the first time here!")
+      setProductList(data);
     })
   }, [])
 

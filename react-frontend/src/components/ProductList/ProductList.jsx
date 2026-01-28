@@ -8,7 +8,7 @@ import "./Delete.css";
 import "./Update.css";
 import "./Add.css";
 import "./Rating.css"
-import { LIST_KEY, addProduct } from '../../services/ProductStorage.jsx';
+import { LIST_KEY } from '../../services/ProductStorage.jsx';
 
 export default function ProductList({ productList, setProductList, isAddingOn, setIsAddingOn }) {
   const navigate = useNavigate();
@@ -77,20 +77,20 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
     const currentUniqueId = productList[deletedIndex].uniqueId;
 
     //delete product based on id
-    fetch(`http://localhost/api/product/${currentUniqueId}`, {
-      method:"DELETE",
-      headers: {
-        "Content-Type":"application/json"
+    fetch(`http://localhost:3000/api/product/${currentUniqueId}`, 
+      {
+        method:"DELETE",
+        headers: {
+          "Content-Type" : "application/json"
+        }
       }
-    }).then(response => response.json())
-    .then(data => {
-      console.log(data.message);
-      //update the UI after deleting item in fe
-      setProductList(l => l.filter(product => product.uniqueId != currentUniqueId))
+    ).then(response => {
+      response.json();
+      console.log(response);
     })
-    
-
-    setDeletedIndex(null);
+    .then(data => {
+      console.log(data);
+    });
   }
 
   function handleUpdateButton(index) {
@@ -150,7 +150,7 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
     }
 
     //cannot permanently update without database
-    fetch(`http::/localhost/api/product/${updatedProduct.uniqueId}`, {
+    fetch(`http:/localhost/api/product/${updatedProduct.uniqueId}`, {
       method:"PUT",
       headers: {
         "Content-Type" : "application/json"
@@ -174,11 +174,18 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
       detailed_description : addDetailedDescriptionInput,
       total_buyer : addTotalBuyersInput,
       rating : addRatingInput,
-      uniqueId: crypto.randomUUID()
+      uniqueId: crypto.randomUUID(),
+      product_images: [
+        "/image/preview-image-1.1.avif",
+        "/image/preview-image-1.2.avif",
+        "/image/preview-image-1.3.avif",
+        "/image/preview-image-1.4.avif",
+        "/image/preview-image-1.5.avif"
+      ],
     }
 
     //update the state of the product list 
-    fetch("http://localhost/api/product", {
+    fetch("http://localhost:3000/api/product", {
       method:"POST",
       headers: {
         "Content-Type":"application/json"
@@ -187,7 +194,8 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
     })
     .then(response => response.json())
     .then(data => {
-      setProductList(l => [...l, data])
+      console.log(data);
+      setProductList(list => [...list, newProduct]);
     });
   }
 
