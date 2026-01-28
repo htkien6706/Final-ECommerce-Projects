@@ -11,16 +11,15 @@ export default function App() {
   //state for adding items
   const [isAddingOn, setIsAddingOn] = useState(false);
 
-
   //call API for GET HTTP methods
   useEffect(() => {
-    fetch("http://localhost:3000/api/product")
+    fetch("http://localhost:3000/api/product/seedData")
     .then(response => response.json())
     .then(data => {
       console.log(data);
       setProductList(data);
     })
-  }, [])
+  }, [productList])
 
   //productList updated -> localStorage automatically trigger UI update
   useEffect(() => {

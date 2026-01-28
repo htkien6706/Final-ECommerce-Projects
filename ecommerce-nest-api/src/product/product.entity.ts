@@ -8,13 +8,13 @@ export class ProductEntity {
   @Column({ unique: true })
   uniqueId: string;
 
-  @Column()
+  @Column('text')
   product_description: string;
 
   @Column()
   preview_image: string;
 
-  @Column()
+  @Column('longtext')
   detailed_description: string;
 
   @Column()
@@ -29,6 +29,6 @@ export class ProductEntity {
   @Column()
   rating: number;
 
-  @Column('simple-array')
+  @Column('json')
   product_images: string[];
 }

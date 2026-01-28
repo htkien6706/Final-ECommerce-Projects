@@ -39,4 +39,9 @@ export class ProductController {
   async update(@Body() dto: CreateProductDto) {
     return this.productService.updateById(dto);
   }
+
+  @Get('seedData')
+  async seedData(): Promise<ProductEntity[]> {
+    return this.productService.getSeedData();
+  }
 }

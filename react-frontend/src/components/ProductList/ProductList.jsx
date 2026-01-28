@@ -166,6 +166,9 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
     }).then(response => {
       console.log(response);
       response.json();
+    }).then(data => {
+      console.log(data);
+      setProductList(data);
     })
   }
 
