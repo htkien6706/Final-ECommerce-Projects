@@ -146,19 +146,27 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
       detailed_description: updateDetailedDescription,
       total_buyer: updateTotalBuyers,
       rating: updateOverallRating,
-      uniqueId: productList[updateIndex].uniqueId
+      uniqueId: productList[updateIndex].uniqueId,
+      product_images: [
+        "/image/preview-image-1.1.avif",
+        "/image/preview-image-1.2.avif",
+        "/image/preview-image-1.3.avif",
+        "/image/preview-image-1.4.avif",
+        "/image/preview-image-1.5.avif"
+      ],
     }
 
     //cannot permanently update without database
-    fetch(`http:/localhost/api/product/${updatedProduct.uniqueId}`, {
+    fetch("http://localhost:3000/api/product", {
       method:"PUT",
       headers: {
         "Content-Type" : "application/json"
       },
-
-      body: JSON.stringify(updatedProduct),
-
-    }).then(response => response.json()).then(data => setProductList(data)).catch(err => console.error("Updated failed:", err))
+      body: JSON.stringify(updatedProduct)
+    }).then(response => {
+      console.log(response);
+      response.json();
+    })
   }
 
   function handleAddAction() {
@@ -192,7 +200,10 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
       },
       body: JSON.stringify(newProduct)
     })
-    .then(response => response.json())
+    .then(response => {
+      response.json();
+      console.log(response);
+    })
     .then(data => {
       console.log(data);
       setProductList(list => [...list, newProduct]);

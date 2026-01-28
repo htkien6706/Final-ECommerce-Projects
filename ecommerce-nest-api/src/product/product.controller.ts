@@ -30,13 +30,13 @@ export class ProductController {
     return addedProduct; // return just the addedProduct
   }
 
-  @Put(':id') // update the product, same with UPDATE op in CRUD
-  async update(@Body() dto: CreateProductDto): Promise<ProductEntity> {
-    return this.productService.update(dto);
-  }
-
   @Delete(':id') // delete the product according to its uniqueId, same with DELETE Operation in CRUD
   async remove(@Param('id') id: string) {
     return this.productService.remove(id);
+  }
+
+  @Put() // update the product, same with UPDATE op in CRUD
+  async update(@Body() dto: CreateProductDto) {
+    return this.productService.updateById(dto);
   }
 }
