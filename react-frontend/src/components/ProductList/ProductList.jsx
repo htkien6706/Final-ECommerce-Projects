@@ -84,6 +84,7 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
     })
     .then(data => {
       console.log(data);
+      setProductList(list => list.filter(product => product.uniqueId != currentUniqueId))
     });
   }
 
