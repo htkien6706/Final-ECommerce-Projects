@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -42,12 +42,6 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
   const [addTotalBuyersInput, setAddTotalBuyersInput] = useState(0);
   const [addRatingInput, setAddRatingInput] = useState(0);
 
-
-  useEffect(() => {
-    if(productList.length > 0) {
-      return setAddImageInput(productList[0].preview_image);
-    }
-  }, []);
 
 
   //responsible for handling and toggling the menu button to turn on and off 3 concrete options bro
@@ -163,13 +157,14 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
         "Content-Type" : "application/json"
       },
       body: JSON.stringify(updatedProduct)
-    }).then(response => {
-      console.log(response);
-      response.json();
-    }).then(data => {
-      console.log(data);
-      setProductList(data);
     })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data.message);
+      setProductList(list => list.map(product => {
+        return product.uniqueId === updatedProduct.uniqueId ? updatedProduct : product
+      }))
+    });
   }
 
   function handleAddAction() {
@@ -177,9 +172,11 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
   }
 
   function handleConfirmAddAction() {
+    const addPreviewImageInput = (addImageInput === null || addImageInput === '') ? productList[0].preview_image : addImageInput;
+
     const newProduct = {
       product_description : addNameInput,
-      preview_image: addImageInput,
+      preview_image: addPreviewImageInput,
       original_price : addOriginalPriceInput,
       discount_price : addDiscountPriceInput,
       detailed_description : addDetailedDescriptionInput,

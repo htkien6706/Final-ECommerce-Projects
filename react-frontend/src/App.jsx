@@ -19,13 +19,9 @@ export default function App() {
       console.log(data);
       setProductList(data);
     })
-  }, [productList])
+  }, [])
 
-  //productList updated -> localStorage automatically trigger UI update
-  useEffect(() => {
-    localStorage.setItem(LIST_KEY, JSON.stringify(productList))
-    console.log(productList);
-  }, [productList]);
+  console.log(productList);
 
   useEffect(() => {
     console.log(isAddingOn ? "Overlay is turned on" : "The overlay is turned off")
