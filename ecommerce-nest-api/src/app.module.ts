@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ProductModules } from './product/product.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductEntity } from './product/product.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { ProductEntity } from './product/product.entity';
       entities: [ProductEntity], // insert Products entity into entities array in forRoot module method options to let TypeORM know its existance
       synchronize: true,
     }),
+    AuthModule,
   ],
 })
 export class AppModule {}
