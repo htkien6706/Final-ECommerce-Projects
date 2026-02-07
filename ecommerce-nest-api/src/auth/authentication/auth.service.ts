@@ -3,30 +3,29 @@ import { JwtService } from '@nestjs/jwt';
 import { sign } from 'crypto';
 import { Role } from '../authorization/enums/role.enum';
 import { STATUS } from 'src/manage-users/enum/status.enum';
-
-const fakeUsers = [
-    {
-        username:"phanthiquynh",
-        password:"hatinh",
-        roles: Role.Admin,
-        account_status: STATUS.ACTIVE,
-    },
-
-    {
-        username:"vuthiphuonganh",
-        password:"namdinh",
-    }
-]
+import { InjectRepository } from '@nestjs/typeorm';
+import { DataSource } from 'typeorm';
+import { UserEntity } from 'src/manage-users/entity/user.entity';
 
 @Injectable()
 export class AuthService {
-    constructor(private readonly jwtService : JwtService) {}
+    constructor(
+        private readonly dataSource : DataSource,
+        private readonly jwtService : JwtService,
+    ) {}
     async validateUser({username, password}) {
-        const findUser = fakeUsers.find(user => user.username === username);
+        const findUser = await this.dataSource.createQueryBuilder(UserEntity, 'user').where("username = :username", {username : username}).getOne();
+
+        console.log(findUser);
+
         if(!findUser) return null;
-        if(findUser && findUser.password === password) {
+        if(findUser.password === password) {
             const {password, ...payload} = findUser;
+            console.log(payload);
             return this.jwtService.signAsync(payload);
         }
+
+        return null;
+        
     }
 }
