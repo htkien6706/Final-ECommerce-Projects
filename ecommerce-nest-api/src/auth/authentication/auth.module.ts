@@ -15,6 +15,7 @@ import { JWTStrategy } from './strategies/jwt.strategy';
   }),PassportModule],
   
   controllers:[AuthController],
-  providers:[AuthService, LocalStrategy, LocalGuard, JWTAuthGuard, JWTStrategy]
+  providers:[AuthService, LocalStrategy, LocalGuard, JWTAuthGuard, JWTStrategy],
+  exports:[JWTAuthGuard],
 })
 export class AuthModule {}

@@ -1,11 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { sign } from 'crypto';
+import { Role } from '../authorization/enums/role.enum';
+import { STATUS } from 'src/manage-users/enum/status.enum';
 
 const fakeUsers = [
     {
         username:"phanthiquynh",
         password:"hatinh",
+        roles: Role.Admin,
+        account_status: STATUS.ACTIVE,
     },
 
     {

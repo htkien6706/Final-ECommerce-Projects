@@ -5,6 +5,18 @@ import { Repository } from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
 import { DataSource } from 'typeorm';
 
+const Users = [
+  {
+    username:"phanthiquynh",
+    password:"hatinh",
+  },
+
+  {
+    username:"vuthiphuonganh",
+    password:"namdinh",
+  }
+]
+
 @Injectable()
 export class ProductService {
   constructor(
@@ -457,4 +469,10 @@ export class ProductService {
     await this.productRepository.insert(seedProductEntities);
     return seedProductEntities;
   }
+
+  async getUser() {
+    return Users;
+  }
+
+  
 }

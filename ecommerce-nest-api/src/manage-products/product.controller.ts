@@ -7,10 +7,14 @@ import {
   Controller,
   Body,
   Param,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { ProductEntity } from './product.entity';
-
+import { RoleGuard } from 'src/auth/authorization/guards/role.guard';
+import { Role } from 'src/auth/authorization/enums/role.enum';
+import { Roles } from 'src/auth/authorization/decorators/role.decorator';
+import { JWTAuthGuard } from 'src/auth/authentication/guards/jwt.guard';
 @Controller('api/product')
 export class ProductController {
   constructor(private productService: ProductService) {}
@@ -43,5 +47,12 @@ export class ProductController {
   @Get('seedData')
   async seedData(): Promise<ProductEntity[]> {
     return this.productService.getSeedData();
+  }
+
+  @UseGuards(JWTAuthGuard, RoleGuard)
+  @Roles(Role.Admin)
+  @Get('test')
+  async findUsers() {
+    return this.productService.getUser();
   }
 }
