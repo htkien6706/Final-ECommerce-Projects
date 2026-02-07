@@ -29,4 +29,17 @@ export class AdminAccountService {
         const queryResult = await this.dataSource.createQueryBuilder().delete().from(UserEntity).where("username = :username", {username : deletedUsername});
         console.log(queryResult);
     }
+
+    //admin should not modify username and password of user, just modify role and account_status
+    async updateUser(userDto : UserDto) {
+        const queryResult = this.dataSource.createQueryBuilder().update(UserEntity).set({
+            roles: userDto.roles,
+            account_status: userDto.account_status
+        })
+        .where("username = :username", {username : userDto.username})
+        .execute();
+
+        console.log(queryResult);
+        return queryResult;
+    }
 }

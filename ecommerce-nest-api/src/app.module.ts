@@ -5,6 +5,7 @@ import { ProductEntity } from './manage-products/product.entity';
 import { AuthModule } from './auth/authentication/auth.module';
 import { UserEntity } from './manage-users/entity/user.entity';
 import { AccountModule } from './manage-users/account.module';
+import { AdminSeedModule } from './manage-users/seed-user/admin-seed.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { AccountModule } from './manage-users/account.module';
       synchronize: true,
     }),
     AuthModule,
-    AccountModule
+    AccountModule,
+    AdminSeedModule, //add this module here because when all modules are initialized, the bootstrap will run the seed data, then all backend are ready to receive request from frontend
   ],
 })
 export class AppModule {}

@@ -28,11 +28,8 @@ export class AdminAccountController {
         return this.adminAccountService.deleteThisUser(userDto.username);
     }
 
-    
-
-    
-
-    
-
-    
+    @Put() // synonymous with UPDATE operation
+    async updateUser(@Body() userDto : UserDto) {
+        return this.adminAccountService.updateUser(userDto);
+    }    
 }
