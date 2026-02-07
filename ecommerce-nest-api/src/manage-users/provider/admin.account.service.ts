@@ -26,8 +26,9 @@ export class AdminAccountService {
     }
 
     async deleteThisUser(deletedUsername: string) {
-        const queryResult = await this.dataSource.createQueryBuilder().delete().from(UserEntity).where("username = :username", {username : deletedUsername});
+        const queryResult = this.dataSource.createQueryBuilder().delete().from(UserEntity).where("username = :username", {username : deletedUsername}).execute();
         console.log(queryResult);
+        return queryResult;
     }
 
     //admin should not modify username and password of user, just modify role and account_status
