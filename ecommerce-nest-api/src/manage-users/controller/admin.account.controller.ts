@@ -1,4 +1,5 @@
 //admin can have CRUD with user account
+//admin can view all users(GET), can create new user(POST and it can be admin or user), can deleteUser(DELETE), can update user status(PUT)
 import { Controller, Get, UseGuards, Post, Put, Delete, Body } from "@nestjs/common";
 import { JWTAuthGuard } from "src/auth/authentication/guards/jwt.guard";
 import { Role } from "src/auth/authorization/enums/role.enum";
