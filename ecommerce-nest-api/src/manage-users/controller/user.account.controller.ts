@@ -10,20 +10,26 @@ import { UserAccountService } from "../provider/user.account.service";
 @Roles(Role.User)
 @Controller('user/account')
 export class UserAccountController {
-    constructor(private readonly userAccountService : UserAccountService) {}
+    constructor(private readonly userAccountService: UserAccountService) { }
     @Get()
-    async viewProfile(@Body() userDto : UserDto) {
+    async viewProfile(@Body() userDto: UserDto) {
         return this.userAccountService.findUserByUsername(userDto.username);
     }
 
     //now, user can change their password and change their username
-    @Put()
-    async changePassword(@Body() userDto : UserDto) {
-        return this.userAccountService.changeUserPasswordUsingUsername(userDto.username, userDto.password);
+    @Put('change-password')
+    async changePassword(
+        @Req() req: any,
+        @Body() userDto: UserDto,
+    ) {
+        return this.userAccountService.changeUserPasswordUsingUsername(
+            req.user.username,
+            userDto.password,
+        );
     }
 
-    @Put()
-    async changeUsername(@Body() userDto : UserDto, @Req() req : any) {
+    @Put('change-username')
+    async changeUsername(@Body() userDto: UserDto, @Req() req: any) {
         return this.userAccountService.changeUsername(userDto.username, req.user.username);
     }
 }

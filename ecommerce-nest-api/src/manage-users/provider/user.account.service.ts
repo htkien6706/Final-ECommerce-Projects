@@ -20,7 +20,7 @@ export class UserAccountService {
     async changeUserPasswordUsingUsername(username: string, password : string) {
         const updateQuery = await this.dataSource.createQueryBuilder().update(UserEntity).set({
             password: password,
-        }).where("UserEntity.username = :username", {username : username}).execute();
+        }).where("username = :username", {username : username}).execute();
 
         console.log("Update password succesfully !");
 
