@@ -3,6 +3,7 @@ import HomePage from "./Pages/HomePage.jsx";
 import { useState, useEffect } from 'react'
 import { LIST_KEY } from "./services/ProductStorage.jsx";
 import ProductPage from "./Pages/ProductPage.jsx";
+import Authenticate from "./auth/authenticate.jsx";
 
 export default function App() {
   // state cho whole product list
@@ -43,6 +44,11 @@ export default function App() {
           productList={productList}
         />} />
 
+      <Route
+      path="/authenticate"
+      element= {<Authenticate/>}>
+      </Route>
+        
     </Routes>
   );
 }

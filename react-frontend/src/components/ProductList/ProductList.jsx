@@ -2,7 +2,7 @@ import { useState } from 'react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import ProductTypes from "../ProductTypes/ProductType.jsx"
+import ProductTypes from "../Types/ProductType.jsx"
 import "./ProductList.css";
 import "./Delete.css";
 import "./Update.css";

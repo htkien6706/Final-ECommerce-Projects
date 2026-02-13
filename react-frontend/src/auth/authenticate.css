@@ -1,0 +1,261 @@
+.container {
+    height:100vh;
+    width:100vw;
+    background-color:#FFE7DF;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    z-index:1;
+}
+
+.left-side-wrapper {
+    display:grid;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center;
+    width: 100%;
+    height: 100%;
+
+}
+
+.left-side {
+    border-radius: 30px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width: 95%;
+    height: 90%;
+    margin-left: 3%;
+    overflow:hidden;
+}
+
+.left-image {
+    margin-left: -20%;
+    margin-top: -50%;
+    width: 400%;
+    height: 100%;
+    object-fit: cover;
+}
+.auth-form {
+    width: 70%;
+    height:75%;
+    background-color:white;
+    border-radius: 30px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.right-side {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.login-form {
+    display:flex;
+    flex-direction: column;
+    width: 75%;
+}
+
+.login-title {
+    display:flex;
+    justify-content:center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size:35px;
+}
+
+.username-part {
+    display:flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.username-div {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width: 100%;
+}
+#username-input {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 75%;
+    height: 27px;
+    border-radius:7px;
+    border: 3px gray solid;
+    transition: 0.35s ease-in-out
+}
+
+#username-input:focus {
+    outline:none;
+    border: 3px solid #F472B6;
+}
+
+#username-input::placeholder {
+    padding-left:5px;
+    padding-right: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+.password-part {
+    margin-top: 10px;
+    display:flex;
+    flex-direction:column;
+
+}
+
+#password-input {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 75%;
+    height: 27px;
+    border-radius:7px;
+    border: 3px gray solid;
+    transition: 0.35s ease-in-out
+}
+
+#password-input::placeholder {
+    padding-left: 5px;
+    padding-right: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#password-input:focus {
+    outline:none;
+    border: 3px solid #F472B6;
+}
+
+.forgot-password {
+    display:flex;
+    justify-content:flex-end;
+    text-decoration: underline;
+    color: burlywood;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition:0.3s;
+    cursor:pointer;
+}
+
+.forgot-password:hover {
+    color:chocolate
+}
+
+.login-btn-div {
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    justify-content:center;
+    margin-bottom: 20px;
+
+}
+
+.login-btn {
+    background: lightpink;
+    cursor:pointer;
+    width: 40%;
+    padding:auto;
+    height: 2vw;
+    color:white;
+    transition: 0.35s ease-in-out;
+    border-radius: 10px;
+}
+
+.login-btn:hover {
+    transform: scale(1.02);
+}
+
+.seperator {
+    display:flex;
+    align-items:center;
+    text-align:center;
+    width: 100%;
+}
+
+.seperator::before,
+.seperator::after {
+    content:'';
+    flex:1;
+    border-bottom: 1px solid #000;
+}
+
+.separator:not(:empty)::before {
+  margin-right: .30em;
+}
+
+.separator:not(:empty)::after {
+  margin-left: .25em;
+}
+
+.other-authen-options {
+    display:flex;
+    flex-direction: row;
+    gap: 25px;
+    justify-content:center;
+    margin-top: 15px;
+}
+
+.facebook-login {
+    display:flex;
+    flex-direction: row;
+    align-items:center;
+    background-color: #3B82F6;
+    color:white;
+    border-radius: 10px;
+    transition:0.35s ease-in
+}
+
+.facebook-div {
+    width: 50px;
+    display:flex;
+    flex-direction: row;
+}
+
+.facebook-image {
+    width: 100%;
+}
+
+.facebook-login:hover {
+    background: #2563EB;
+}
+
+.google-login {
+    display:flex;
+    flex-direction: row;
+    align-items:center;
+    background-color: #F9FAFB;
+    color:#374151;
+    border-radius: 10px;
+    border: 1px solid #E5E7EB;
+    transition: 0.25s ease-in-out;
+
+}
+
+.google-div {
+    width: 50px;
+    display:flex;
+    flex-direction: row;
+}
+
+.google-image {
+    width: 100%;
+}
+
+.google-login:hover {
+  background: #F3F4F6;
+  cursor:pointer;
+}
+
+.redirect-signup {
+    display:flex;
+    flex-direction: row;
+    justify-content:center;
+    margin-top: 25px;
+}
+
+
+
+
+
+
+
