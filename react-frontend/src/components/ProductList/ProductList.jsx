@@ -197,12 +197,12 @@ export default function ProductList({ productList, setProductList, isAddingOn, s
     fetch("http://localhost:3000/api/product", {
       method:"POST",
       headers: {
-        "Content-Type":"application/json"
+        "Content-Type":"application/json",
       },
       body: JSON.stringify(newProduct)
     })
     .then(response => {
-      response.json();
+      response.text();
       console.log(response);
     })
     .then(data => {
