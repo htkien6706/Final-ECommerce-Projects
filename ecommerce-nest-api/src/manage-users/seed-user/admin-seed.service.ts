@@ -30,6 +30,8 @@ export class AdminSeedService implements OnApplicationBootstrap {
         const newAdmin = this.userRepository.create({
             username: username,
             password: password,
+            fullname:"Hoang Trung Kien",
+            email:"hoangkien06072006@gmail.com",
             roles: Role.Admin,
             account_status: STATUS.ACTIVE,
         })

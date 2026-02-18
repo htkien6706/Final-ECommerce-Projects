@@ -4,14 +4,18 @@ import { sign } from 'crypto';
 import { Role } from '../authorization/enums/role.enum';
 import { STATUS } from 'src/manage-users/enum/status.enum';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DataSource } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { UserEntity } from 'src/manage-users/entity/user.entity';
+import { SignupDto } from './dto/signup.dto';
 
 @Injectable()
 export class AuthService {
     constructor(
         private readonly dataSource : DataSource,
         private readonly jwtService : JwtService,
+
+        @InjectRepository(UserEntity)
+        private readonly userRepository : Repository<UserEntity>
     ) {}
     async validateUser({username, password}) {
         const findUser = await this.dataSource.createQueryBuilder(UserEntity, 'user').where("username = :username", {username : username}).getOne();
@@ -26,6 +30,37 @@ export class AuthService {
         }
 
         return null;
-        
     }
+
+    async createNewAccount(signupDto : SignupDto) : Promise<{message: string, done: boolean}> {
+        const newUsername = signupDto.username;
+        const existingUser = await this.userRepository.findOne({where: [
+            {username: newUsername},
+            {email: signupDto.email},
+        ]})
+        console.log("Current user is: ", existingUser);
+
+        if(existingUser) {
+            return {
+                message:"Username existed! Try another username",
+                done:false,
+            }
+        }
+
+        const newUser = {
+            ...signupDto,   
+            roles:Role.User,
+            account_status:STATUS.ACTIVE,
+        }
+
+        console.log("after successfully verify this username is unique, we will create new account which is: ", newUser);
+
+        const queryResult = this.userRepository.save(newUser);
+        return {
+            message:"Sucessfully signup, login to use our services !",
+            done:true,
+        } 
+    }
+
+    
 }

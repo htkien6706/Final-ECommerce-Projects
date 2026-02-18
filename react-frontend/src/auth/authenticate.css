@@ -83,14 +83,23 @@
     width: 100%;
 }
 
-#username-input {
-    padding-left: 10px;
-    padding-right: 10px;
-    width: 75%;
-    height: 27px;
-    border-radius: 7px;
-    border: 3px gray solid;
-    transition: 0.35s ease-in-out
+.login-form > label > span {
+    color:#7A5C61;
+    font-weight: 600;
+}
+
+.login-form > label > input {
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #FF6FAE;
+    box-shadow: 0 0 0 3px rgba(255, 111, 174, 0.15);
+    transition: 0.35s ease-in-out;
+    height: 25px;
+    background-image:url("auth_image/username-icon.png");
+    background-size: 18px;
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    padding-left: 40px;
 }
 
 #username-input:focus {
@@ -101,7 +110,9 @@
 #username-input::placeholder {
     padding-left: 5px;
     padding-right: 10px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #C9A9AE;
+    font-weight: 400;
+    letter-spacing: 0.2px;
 }
 
 
@@ -109,23 +120,19 @@
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-
 }
 
 #password-input {
-    padding-left: 10px;
-    padding-right: 10px;
-    width: 75%;
-    height: 27px;
-    border-radius: 7px;
-    border: 3px gray solid;
-    transition: 0.35s ease-in-out
+    background-image:url("auth_image/visibility-icon.png")
 }
 
 #password-input::placeholder {
     padding-left: 5px;
     padding-right: 10px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #C9A9AE;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+
 }
 
 #password-input:focus {
@@ -260,6 +267,13 @@
     margin-top: 25px;
 }
 
+
+
+
+
+
+
+
 /* here is for the signup form */
 .signup-form {
     width: 90%;
@@ -285,12 +299,24 @@
     box-shadow: 0 0 0 3px rgba(255, 111, 174, 0.15);
     transition: 0.35s ease-in-out;
     height: 25px;
+    background-image:url("auth_image/name-icon.png");
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    padding-left: 45px;
 }
 
 .signup-form>label>input:focus {
     outline: none;
     border: 3px solid #F472B6;
-    transition: 0.3s ease-in-out
+    transition: 0.15s ease-in-out;
+    box-shadow: 0 0 0 3px rgba(255, 111, 174, 0.15);
+}
+
+.signup-form > label > input::placeholder {
+    color: #C9A9AE;
+    font-weight: 400;
+    letter-spacing: 0.2px;
 }
 
 .password-range {
@@ -308,4 +334,36 @@
     font-weight: 600;
     text-decoration: underline;
     cursor: pointer;
+}
+
+.helper-text {
+    font-size: 13px;
+    margin-top: 4px;
+    color: #E4697A;
+    font-weight: 500;
+}
+
+.signup-button {
+    width: 30%;
+    height: 40px;
+    background-color: #FF6FAE;
+    color: #FFFFFF;
+    transition: 0.3s ease-in-out;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.signup-button:hover {
+    background-color: #FF4F9A;
+}
+
+.password-not-match {
+    font-size: 13px;
+    margin-top: 4px;
+    color: #E4697A;
+    font-weight: 500;
+}
+
+.matching-password {
+    color: #FF6FAE;
 }

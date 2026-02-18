@@ -61,15 +61,3 @@
 	background: white;
 }
 
-.signup-button {
-    width: 30%;
-    height: 40px;
-    background-color: #FF6FAE;
-    color: #FFFFFF;
-    transition: 0.3s ease-in-out;
-    border-radius: 10px;
-}
-
-.signup-button:hover {
-    background-color: #FF4F9A;
-}

@@ -8,6 +8,12 @@ export class UserEntity {
     id: string;
 
     @Column()
+    fullname: string;
+
+    @Column({unique:true})
+    email: string;
+
+    @Column({unique:true})
     username:string;
 
     @Column()
@@ -32,4 +38,5 @@ export class UserEntity {
 
     @UpdateDateColumn()
     updatedAt: Date;
+
 }
