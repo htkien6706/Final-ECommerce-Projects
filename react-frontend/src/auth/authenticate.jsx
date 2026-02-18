@@ -18,25 +18,6 @@ function handleLoginButton(username, password) {
         });
 }
 
-async function handleSignupButton(fullname, email, username, password) {
-    const newUser = {
-        fullname:fullname,
-        email:email,
-        username:username,
-        password: password,
-    }
-
-    const response = await fetch("http://localhost:3000/auth/create-account", {
-        method:"POST",
-        headers:{
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(newUser),
-    })
-
-    const result = await response.json();
-    console.log(result);
-}
 
 export default function Authenticate() {
     const [username, setUsername] = useState('');
@@ -60,7 +41,38 @@ export default function Authenticate() {
     const [areTermsAgreed, setAreTermsAgreed] = useState(false);
     const isMatchingPassword = (signupPassword === signupConfirmPassword) && isValidPassword;
 
-    
+    const [usernameExistedMessage, setUsernameExistedMessage] = useState(null);
+    const [emailExistedMessage, setEmailExistedMessage] = useState(null);
+
+    async function handleSignupButton(fullname, email, username, password) {
+        const newUser = {
+            fullname: fullname,
+            email: email,
+            username: username,
+            password: password,
+        }
+
+        const response = await fetch("http://localhost:3000/auth/create-account", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newUser),
+        })
+
+        const result = await response.json();
+        console.log(result);
+
+        if(!result.done) {
+            if (result.message === 'Username existed! Please try another username') {
+                setUsernameExistedMessage(result.message);
+            }
+
+            if(result.message === 'Same email found! Plase try using another email') {
+                setEmailExistedMessage(result.message);
+            }
+        }
+    }
 
     return (
         <div className="container">
@@ -113,7 +125,6 @@ export default function Authenticate() {
                                     <div className="google-div">
                                         <img className="google-image" src="auth_image/google-icon.png"></img>
                                     </div>
-
                                     Continue with Google
 
                                 </button>
@@ -133,19 +144,19 @@ export default function Authenticate() {
                         <form className="signup-form">
                             <h2 className="signup-title"> Create account</h2>
                             <label>
-                                <span style={{color:"#7A5C61", fontWeight: "700"}}> Your full name </span>
-                                <input 
-                                type="text" 
-                                placeholder="eg...Hoang Trung Kien" 
-                                onChange={(e) => {
-                                    setSignupFullname(e.target.value);
-                                    console.log("Current Fullname is: ", signupFullname);
-                                    if(e.target.value.length >= 2) {
-                                        setIsValidFullname(true);
-                                    }
+                                <span style={{ color: "#7A5C61", fontWeight: "700" }}> Your full name </span>
+                                <input
+                                    type="text"
+                                    placeholder="eg...Hoang Trung Kien"
+                                    onChange={(e) => {
+                                        setSignupFullname(e.target.value);
+                                        console.log("Current Fullname is: ", signupFullname);
+                                        if (e.target.value.length >= 2) {
+                                            setIsValidFullname(true);
+                                        }
 
-                                    else setIsValidFullname(false);
-                                }}></input>
+                                        else setIsValidFullname(false);
+                                    }}></input>
 
                                 {!isValidFullname && (
                                     <span className="helper-text"> Full name must be at least 2 characters </span>
@@ -153,90 +164,97 @@ export default function Authenticate() {
                             </label>
 
                             <label>
-                                <span style={{color:"#7A5C61", fontWeight: "700"}}> Email </span>
+                                <span style={{ color: "#7A5C61", fontWeight: "700" }}> Email </span>
                                 <input
-                                style={{backgroundImage:`url(auth_image/email-icon.jpg)`}}
-                                type="email" 
-                                placeholder="eg:..hoangkien06072006@gmail.com"
-                                onChange={(e) => {
-                                    setSignupEmail(e.target.value);
-                                    console.log("Current Email address is: ", signupEmail);
+                                    style={{ backgroundImage: `url(auth_image/email-icon.jpg)` }}
+                                    type="email"
+                                    placeholder="eg:..hoangkien06072006@gmail.com"
+                                    onChange={(e) => {
+                                        setUsernameExistedMessage(null);
+                                        setSignupEmail(e.target.value);
+                                        console.log("Current Email address is: ", signupEmail);
 
-                                    if(e.target.value.length >= 10) {
-                                        setIsValidEmail(true);
-                                    }
+                                        if (e.target.value.length >= 10) {
+                                            setIsValidEmail(true);
+                                        }
 
-                                    else setIsValidEmail(false);
-                                }}
+                                        else setIsValidEmail(false);
+                                    }}
                                 ></input>
 
                                 {!isValidEmail && (
                                     <span className="helper-text"> Invalid email address !</span>
                                 )}
+
+
+                                <span className="helper-text"> {emailExistedMessage}</span>
                             </label>
 
                             <label>
-                                <span style={{color:"#7A5C61",fontWeight: "700"}}> Username </span>
+                                <span style={{ color: "#7A5C61", fontWeight: "700" }}> Username </span>
                                 <input
-                                style={{backgroundImage:`url(auth_image/username-icon.png)`, backgroundSize: "20px", backgroundPosition:"left 13px center"}}
-                                type="text" 
-                                placeholder="eg...htkien6706"
-                                onChange={(e) => {
-                                    setSignupUsername(e.target.value);
-                                    console.log("Current username is:", signupUsername);
+                                    style={{ backgroundImage: `url(auth_image/username-icon.png)`, backgroundSize: "20px", backgroundPosition: "left 13px center" }}
+                                    type="text"
+                                    placeholder="eg...htkien6706"
+                                    onChange={(e) => {
+                                        setUsernameExistedMessage(null);
+                                        setSignupUsername(e.target.value);
+                                        console.log("Current username is:", signupUsername);
 
-                                    if(e.target.value.length >= 8) {
-                                        setIsValidUsername(true);
-                                    }
+                                        if (e.target.value.length >= 8) {
+                                            setIsValidUsername(true);
+                                        }
 
-                                    else setIsValidUsername(false);
-                                }}></input>
+                                        else setIsValidUsername(false);
+                                    }}></input>
 
                                 {!isValidUsername && (
                                     <span className="helper-text"> Must be 8 digits longer, no whitespace allowed !</span>
                                 )}
+
+                                <span className="helper-text"> {usernameExistedMessage}</span>
                             </label>
 
 
                             <label>
-                                <span style={{color:"#7A5C61", fontWeight: "700"}}>  Password </span>
+                                <span style={{ color: "#7A5C61", fontWeight: "700" }}>  Password </span>
                                 <input
-                                style={{backgroundImage:`url("auth_image/visibility-icon.png")`}}
-                                type="text" 
-                                placeholder="Your password"
-                                onChange={(e) => {
-                                    setSignupPassword(e.target.value);
-                                    console.log("Current password is: ", signupPassword);
+                                    style={{ backgroundImage: `url("auth_image/visibility-icon.png")` }}
+                                    type="text"
+                                    placeholder="Your password"
+                                    onChange={(e) => {
+                                        setSignupPassword(e.target.value);
+                                        console.log("Current password is: ", signupPassword);
 
-                                    if(e.target.value.length >= 8) {
-                                        setIsValidPassword(true);
-                                    }
-                                    else setIsValidPassword(false);
-                                }}></input>
+                                        if (e.target.value.length >= 8) {
+                                            setIsValidPassword(true);
+                                        }
+                                        else setIsValidPassword(false);
+                                    }}></input>
 
                                 {!isValidPassword && (
                                     <span className="helper-text"> Must be 8 digits or longer</span>
-                                )} 
+                                )}
                             </label>
 
                             <label>
-                                <span style={{color:"#7A5C61", fontWeight: "700"}}> Confirm password </span>
-                                <input 
-                                style={{backgroundImage:`url("auth_image/confirm-password.png")`, backgroundSize:"20px"}}
-                                type="text" 
-                                placeholder="Confirm your password"
-                                onChange={(e) => {
-                                    setSignupConfirmPassword(e.target.value);
-                                    console.log("The confirmed password is: ", signupConfirmPassword);
+                                <span style={{ color: "#7A5C61", fontWeight: "700" }}> Confirm password </span>
+                                <input
+                                    style={{ backgroundImage: `url("auth_image/confirm-password.png")`, backgroundSize: "20px" }}
+                                    type="text"
+                                    placeholder="Confirm your password"
+                                    onChange={(e) => {
+                                        setSignupConfirmPassword(e.target.value);
+                                        console.log("The confirmed password is: ", signupConfirmPassword);
 
-                                    if(e.target.value.length >= 8) {
-                                        setIsValidConfirmPassword(true);
-                                    }
+                                        if (e.target.value.length >= 8) {
+                                            setIsValidConfirmPassword(true);
+                                        }
 
-                                    else {
-                                        setIsValidConfirmPassword(false);
-                                    }
-                                }}></input>
+                                        else {
+                                            setIsValidConfirmPassword(false);
+                                        }
+                                    }}></input>
 
                                 {!isMatchingPassword && (
                                     <span className="password-not-match"> Password does not match or invalid!</span>
@@ -247,34 +265,34 @@ export default function Authenticate() {
                                 )}
                             </label>
 
-                            <label 
-                            className="checkbox-container"
+                            <label
+                                className="checkbox-container"
                             >
-                                <input 
-                                type="checkbox"
-                                checked={areTermsAgreed}
-                                onChange={(e) => {
-                                    setAreTermsAgreed(e.target.checked);
-                                }}></input>
+                                <input
+                                    type="checkbox"
+                                    checked={areTermsAgreed}
+                                    onChange={(e) => {
+                                        setAreTermsAgreed(e.target.checked);
+                                    }}></input>
                                 <span className="checkmark"></span>
                                 By click this button, you agreed with our Terms of Service
                             </label>
 
-                            <button 
-                            className="signup-button"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                console.log(isValidFullname);
-                                console.log(isValidEmail);
-                                console.log(isValidUsername);
-                                console.log(isValidPassword);
-                                console.log(isMatchingPassword);
-                                console.log(areTermsAgreed);
-                                if(isValidFullname && isValidEmail && isValidUsername && isValidPassword && isMatchingPassword && areTermsAgreed) {
-                                    console.log("All requirements are met !");
-                                    handleSignupButton(signupFullname, signupEmail, signupUsername, signupPassword);
-                                }
-                            }}
+                            <button
+                                className="signup-button"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    console.log(isValidFullname);
+                                    console.log(isValidEmail);
+                                    console.log(isValidUsername);
+                                    console.log(isValidPassword);
+                                    console.log(isMatchingPassword);
+                                    console.log(areTermsAgreed);
+                                    if (isValidFullname && isValidEmail && isValidUsername && isValidPassword && isMatchingPassword && areTermsAgreed) {
+                                        console.log("All requirements are met !");
+                                        handleSignupButton(signupFullname, signupEmail, signupUsername, signupPassword);
+                                    }
+                                }}
                             > Create account !
                             </button>
 

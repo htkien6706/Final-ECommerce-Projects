@@ -51,7 +51,6 @@ export class AuthService {
             }
         }
         
-
         const newUser = {
             ...signupDto,   
             roles:Role.User,
