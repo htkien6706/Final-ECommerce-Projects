@@ -33,19 +33,24 @@ export class AuthService {
     }
 
     async createNewAccount(signupDto : SignupDto) : Promise<{message: string, done: boolean}> {
-        const newUsername = signupDto.username;
-        const existingUser = await this.userRepository.findOne({where: [
-            {username: newUsername},
-            {email: signupDto.email},
-        ]})
-        console.log("Current user is: ", existingUser);
+        const existingUsername = await this.userRepository.findOne({where: {username: signupDto.username}});
 
-        if(existingUser) {
+        const existingEmail = await this.userRepository.findOne({where: {email: signupDto.email}});
+
+        if(existingUsername) {
             return {
-                message:"Username existed! Try another username",
+                message:"Username existed! Please try another username",
                 done:false,
             }
         }
+
+        if(existingEmail) {
+            return {
+                message:"Same email found! Plase try using another email",
+                done:false,
+            }
+        }
+        
 
         const newUser = {
             ...signupDto,   
