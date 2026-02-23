@@ -1,7 +1,6 @@
 import Header from "../components/Header/Header.jsx"
 import IntroPicture from "../components/IntroPicture/IntroPart.jsx"
 import ProductList from "../components/ProductList/ProductList.jsx";
-import { LIST_KEY } from "../services/ProductStorage.jsx";
 
 export default function HomePage({productList, setProductList, isAddingOn, setIsAddingOn}) {
   return (

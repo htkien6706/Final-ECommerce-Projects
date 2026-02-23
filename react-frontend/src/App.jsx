@@ -1,9 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./Pages/HomePage.jsx";
 import { useState, useEffect } from 'react'
-import { LIST_KEY } from "./services/ProductStorage.jsx";
 import ProductPage from "./Pages/ProductPage.jsx";
-import Authenticate from "./auth/authenticate.jsx";
+import Authenticate from "./feature/auth/authenticate.jsx";
 
 export default function App() {
   // state cho whole product list

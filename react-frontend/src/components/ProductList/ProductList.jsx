@@ -8,7 +8,6 @@ import "./Delete.css";
 import "./Update.css";
 import "./Add.css";
 import "./Rating.css"
-import { LIST_KEY } from '../../services/ProductStorage.jsx';
 
 export default function ProductList({ productList, setProductList, isAddingOn, setIsAddingOn }) {
   const navigate = useNavigate();
