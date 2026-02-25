@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
+import "../styles/common.css";
 
 export type AuthContext = {
     setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,13 +16,13 @@ export default function AuthPage() {
             <div className="auth-form">
                 <div className="left-side-wrapper">
                     <div className="left-side">
-                        <img className="left-image" src="auth_image/auth-picture.webp"></img>
+                        <img className="left-image" src="/auth_image/auth-picture.webp" ></img>
                     </div>
                 </div>
-            </div>
 
-            <div className="right-side">
+                <div className="right-side">
                 <Outlet context={{setIsLogin, setIsSignup}}/>
+            </div>
             </div>
         </div>
     )

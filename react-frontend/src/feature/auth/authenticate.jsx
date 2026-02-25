@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./authenticate.css";
 import "./checkbox.css";
 
 

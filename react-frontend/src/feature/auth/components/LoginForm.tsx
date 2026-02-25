@@ -2,6 +2,8 @@ import useLoginForm from "../hooks/useLoginForm.js";
 import type { ISetAuthProps, } from "./interface/AuthProps.js";
 import type { AuthContext } from "../pages/AuthPages.js";
 import { useOutletContext } from "react-router-dom";
+import '../styles/login.css';
+import '../styles/common.css';
 
 export default function LoginFormComponent() {
     
@@ -24,7 +26,8 @@ export default function LoginFormComponent() {
 
             <label className="password-part">
                 <span> Password </span>
-                <input type="text" 
+                <input 
+                type="text" 
                 id="password-input" 
                 placeholder="Enter your password !"
                 value={loginHooks.loginPassword}
@@ -48,14 +51,14 @@ export default function LoginFormComponent() {
             <div className="other-authen-options">
                 <button className="facebook-login">
                     <div className="facebook-div">
-                        <img className='facebook-image' src="auth_image/facebook-icon.png"></img>
+                        <img className='facebook-image' src="/auth_image/facebook-icon.png"></img>
                     </div>
                     Continue with Facebook
 
                 </button>
                 <button className="google-login">
                     <div className="google-div">
-                        <img className="google-image" src="auth_image/google-icon.png"></img>
+                        <img className="google-image" src="/auth_image/google-icon.png"></img>
                     </div>
                     Continue with Google
 

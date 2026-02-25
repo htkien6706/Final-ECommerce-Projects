@@ -2,6 +2,8 @@ import { useOutletContext } from "react-router-dom";
 import useSignupForm from "../hooks/useSignupForm.js";
 import useSignupValidation from "../hooks/useSignupValidation.js";
 import type { AuthContext } from "../pages/AuthPages.js";
+import "../styles/common.css";
+import "../styles/login.css";
 
 export default function SignupFormComponent() {
     const signupHooks = useSignupForm();

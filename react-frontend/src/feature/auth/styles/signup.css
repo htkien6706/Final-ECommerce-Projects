@@ -1,0 +1,157 @@
+.signup-form {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-form>label {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.signup-form>label>input {
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #FF6FAE;
+    box-shadow: 0 0 0 3px rgba(255, 111, 174, 0.15);
+    transition: 0.35s ease-in-out;
+    height: 25px;
+    background-image:url("auth_image/name-icon.png");
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    padding-left: 45px;
+}
+
+.signup-form>label>input:focus {
+    outline: none;
+    border: 3px solid #F472B6;
+    transition: 0.15s ease-in-out;
+    box-shadow: 0 0 0 3px rgba(255, 111, 174, 0.15);
+}
+
+.signup-form > label > input::placeholder {
+    color: #C9A9AE;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+}
+
+.password-range {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.already-have-account {
+    margin-top: 20px;
+}
+
+.move-to-signup {
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.helper-text {
+    font-size: 13px;
+    margin-top: 4px;
+    color: #E4697A;
+    font-weight: 500;
+}
+
+.signup-button {
+    width: 30%;
+    height: 40px;
+    background-color: #FF6FAE;
+    color: #FFFFFF;
+    transition: 0.3s ease-in-out;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.signup-button:hover {
+    background-color: #FF4F9A;
+}
+
+.password-not-match {
+    font-size: 13px;
+    margin-top: 4px;
+    color: #E4697A;
+    font-weight: 500;
+}
+
+.matching-password {
+    color: #FF6FAE;
+}
+
+
+/* custom exclusively for just the terms agreeg checkbox in signup
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #FF6FAE;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.checkbox-container .checkmark:after {
+ 	top: 8px;
+	left: 8px;
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	background: white;
+}
