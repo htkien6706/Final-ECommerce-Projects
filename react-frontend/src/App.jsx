@@ -1,8 +1,9 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, RouterProvider } from "react-router-dom";
 import HomePage from "./Pages/HomePage.jsx";
 import { useState, useEffect } from 'react'
 import ProductPage from "./Pages/ProductPage.jsx";
 import Authenticate from "./feature/auth/authenticate.jsx";
+import { router } from "./routes/app.route.js";
 
 export default function App() {
   // state cho whole product list
@@ -28,26 +29,6 @@ export default function App() {
   }, [isAddingOn])
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={<HomePage
-          productList={productList}
-          setProductList={setProductList}
-          isAddingOn={isAddingOn}
-          setIsAddingOn={setIsAddingOn} />} />
-
-      <Route
-        path="/Product/:index"
-        element={<ProductPage
-          productList={productList}
-        />} />
-
-      <Route
-      path="/authenticate"
-      element= {<Authenticate/>}>
-      </Route>
-        
-    </Routes>
+    <RouterProvider router={router}></RouterProvider>
   );
 }

@@ -17,12 +17,14 @@ export async function loginApi({username, password} : loginDto) {
     })
 
     const jwtResponse = await loginResponse.text();
+    console.log(jwtResponse);
     return jwtResponse;
 }
 
 //using for POST method
 export async function signupApi({fullname, email, username, password} : signupDto) : Promise<signupResponse>{
     const newUser = {fullname, email, username, password};
+    console.log("Information of the new user:", newUser);
 
     const signupResponse = await fetch("http://localhost:3000/auth/create-account", {
         method:"POST",
@@ -32,5 +34,8 @@ export async function signupApi({fullname, email, username, password} : signupDt
         body: JSON.stringify(newUser),
     });
 
+    console.log(signupResponse);
+    console.log(signupResponse.json());
+    
     return signupResponse.json();
 }

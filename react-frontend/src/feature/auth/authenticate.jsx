@@ -2,21 +2,6 @@ import { useState } from "react";
 import "./authenticate.css";
 import "./checkbox.css";
 
-function handleLoginButton(username, password) {
-    const userInfo = { username, password };
-
-    fetch("http://localhost:3000/auth/login", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userInfo),
-    }
-    )
-        .then(response => response.text()).then(data => {
-            console.log(data);
-        });
-}
 
 
 export default function Authenticate() {
@@ -63,12 +48,12 @@ export default function Authenticate() {
         const result = await response.json();
         console.log(result);
 
-        if(!result.done) {
+        if (!result.done) {
             if (result.message === 'Username existed! Please try another username') {
                 setUsernameExistedMessage(result.message);
             }
 
-            if(result.message === 'Same email found! Plase try using another email') {
+            if (result.message === 'Same email found! Plase try using another email') {
                 setEmailExistedMessage(result.message);
             }
         }
@@ -107,7 +92,6 @@ export default function Authenticate() {
                             <div className="login-btn-div">
                                 <button className="login-btn" onClick={(e) => {
                                     e.preventDefault();
-                                    handleLoginButton(username, password);
                                 }}> LOGIN </button>
                             </div>
 
