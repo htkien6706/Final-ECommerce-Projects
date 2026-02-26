@@ -37,7 +37,7 @@
     box-shadow: 0 0 0 3px rgba(255, 111, 174, 0.15);
     transition: 0.35s ease-in-out;
     height: 25px;
-    background-image:url("auth_image/username-icon.png");
+    background-image:url("/auth_image/username-icon.png");
     background-size: 18px;
     background-repeat: no-repeat;
     background-position: left 10px center;
@@ -65,7 +65,7 @@
 }
 
 #password-input {
-    background-image:url("auth_image/visibility-icon.png")
+    background-image:url("/auth_image/visibility-icon.png")
 }
 
 #password-input::placeholder {

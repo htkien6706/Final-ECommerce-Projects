@@ -10,10 +10,10 @@ export default function useSignupValidation() {
     const [isValidFullname, setIsValidFullname] = useState<boolean>(false);
     const [isValidEmail, setIsValidEmail] = useState<boolean>(false);
     const [areTermsAgreed, setAreTermsAgreed] = useState<boolean>(false);
-    const isMatchingPassword = (signupForm.signupPassword === signupForm.signupConfirmPassword) && isValidPassword;
+    
 
-    const [usernameExistedMessage, setUsernameExistedMessage] = useState(null);
-    const [emailExistedMessage, setEmailExistedMessage] = useState(null);
+    const [usernameExistedMessage, setUsernameExistedMessage] = useState<string | null>('');
+    const [emailExistedMessage, setEmailExistedMessage] = useState<string|null>('');
 
     return {
         isValidUsername, setIsValidUsername,
@@ -22,7 +22,6 @@ export default function useSignupValidation() {
         isValidFullname, setIsValidFullname,
         isValidEmail, setIsValidEmail,
         areTermsAgreed, setAreTermsAgreed,
-        isMatchingPassword,
         usernameExistedMessage, setUsernameExistedMessage,
         emailExistedMessage, setEmailExistedMessage,
     }

@@ -2,7 +2,6 @@ import { Routes, Route, RouterProvider } from "react-router-dom";
 import HomePage from "./Pages/HomePage.jsx";
 import { useState, useEffect } from 'react'
 import ProductPage from "./Pages/ProductPage.jsx";
-import Authenticate from "./feature/auth/authenticate.jsx";
 import { router } from "./routes/app.route.js";
 
 export default function App() {

@@ -17,7 +17,7 @@ export async function loginApi({username, password} : loginDto) {
     })
 
     const jwtResponse = await loginResponse.text();
-    console.log(jwtResponse);
+    console.log("This is the user with the jwt:", jwtResponse);
     return jwtResponse;
 }
 
@@ -34,8 +34,8 @@ export async function signupApi({fullname, email, username, password} : signupDt
         body: JSON.stringify(newUser),
     });
 
-    console.log(signupResponse);
-    console.log(signupResponse.json());
-    
+    //must using clone because we can just use json() once when fetching the data because json() is readablestream, only read it once, when we need it, just using clone() to get identical response to check
+    const clone = await signupResponse.clone().json();
+    console.log("The message received is:", clone.message);
     return signupResponse.json();
 }

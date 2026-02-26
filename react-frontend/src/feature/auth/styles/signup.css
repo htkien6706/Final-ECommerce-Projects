@@ -22,7 +22,7 @@
     box-shadow: 0 0 0 3px rgba(255, 111, 174, 0.15);
     transition: 0.35s ease-in-out;
     height: 25px;
-    background-image:url("auth_image/name-icon.png");
+    background-image:url("/auth_image/visibility-icon.png");
     background-size: 30px;
     background-repeat: no-repeat;
     background-position: left 10px center;
@@ -53,7 +53,7 @@
     margin-top: 20px;
 }
 
-.move-to-signup {
+.move-to-login {
     font-weight: 600;
     text-decoration: underline;
     cursor: pointer;
@@ -92,7 +92,7 @@
 }
 
 
-/* custom exclusively for just the terms agreeg checkbox in signup
+/* custom exclusively for just the terms agreeg checkbox in signup */
 .checkbox-container {
   display: block;
   position: relative;

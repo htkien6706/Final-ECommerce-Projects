@@ -1,14 +1,18 @@
 import useLoginForm from "../hooks/useLoginForm.js";
 import type { ISetAuthProps, } from "./interface/AuthProps.js";
 import type { AuthContext } from "../pages/AuthPages.js";
-import { useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext, useLocation } from "react-router-dom";
 import '../styles/login.css';
 import '../styles/common.css';
+
 
 export default function LoginFormComponent() {
     
     const {setIsLogin, setIsSignup} = useOutletContext<AuthContext>();
     const loginHooks = useLoginForm();
+    const navigate = useNavigate();
+    const location = useLocation();
+
     return (
         <form className="login-form">
             <h2 className="login-title"> Log In</h2>
@@ -38,7 +42,8 @@ export default function LoginFormComponent() {
             </label>
 
             <h4 className="forgot-password"> Forgot password?</h4>
-
+            
+            {/* THIS IS WHERE WE CALL THE API to create new account for user, also check for email and username existence*/}
             <div className="login-btn-div">
                 <button className="login-btn" onClick={(e) => {
                     e.preventDefault();
@@ -64,12 +69,16 @@ export default function LoginFormComponent() {
 
                 </button>
             </div>
+            
 
+            {/* */}
             <div className="redirect-signup">
                 <span style={{ fontWeight: 570, marginRight: "10px" }}> Do not have account yet ? </span>
                 <span style={{ textDecoration: "underline", cursor: "pointer" }} onClick={() => {
                     setIsSignup(true);
                     setIsLogin(false);
+                    console.log("The current path is:", location.pathname);
+                    navigate("/auth/register", {replace: true});
                 }}> Sign up here ! </span>
             </div>
         </form>
