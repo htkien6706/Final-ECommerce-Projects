@@ -10,26 +10,26 @@ import { UserDto } from "../dto/user.dto";
 
 @UseGuards(JWTAuthGuard, RoleGuard)
 @Roles(Role.Admin)
-@Controller('admin/account')
+@Controller('admin/account-management')
 export class AdminAccountController {
     constructor(private readonly adminAccountService : AdminAccountService) {}
     
-    @Get()
+    @Get('get-users')
     async findAll() {
         return this.adminAccountService.findAll();
     }
 
-    @Post()
+    @Post('create-user')
     async createUser(@Body() userDto : UserDto) {
         return this.adminAccountService.createNewUser(userDto)
     }
 
-    @Delete()
+    @Delete('delete-user')
     async deleteUser(@Body() userDto : UserDto) {
         return this.adminAccountService.deleteThisUser(userDto.username);
     }
 
-    @Put() // synonymous with UPDATE operation
+    @Put('update-user') // synonymous with UPDATE operation
     async updateUser(@Body() userDto : UserDto) {
         return this.adminAccountService.updateUser(userDto);
     }    

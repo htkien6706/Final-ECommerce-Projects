@@ -1,0 +1,81 @@
+.app {
+    display:grid;
+    grid-template-columns: 260px 1fr;
+}
+
+.sidebar {
+    display:flex;
+    flex-direction: column;
+    height: 96vh;
+    padding: 24px 16px;
+    background-color: #fff;
+    border-right: 1px solid;
+}
+
+.brand {
+    width: 100%;
+    height: 84px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.brand img {
+    width: 60px;
+    border-radius: 12px;
+    margin-right: 5px;
+}
+
+.brand_name {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.navbar {
+    height: 100%;
+    position: relative;
+}
+
+.navbar ul {
+    padding: 0;
+    margin: 20px auto;
+}
+
+.navbar ul li {
+    list-style-type: none;
+    height: 44px;
+    display: flex;
+    align-items:center;
+    border-radius: 12px;
+    margin: 5px auto;
+}
+
+.nav_link {
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    height:100%;
+    width:100%;
+    padding-left:10px;
+}
+
+.logout {
+    position:absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.active {
+    background-color: red;
+}
+
+.nav_link img {
+    mix-blend-mode: multiply;
+}
+
+
+
+
+
+

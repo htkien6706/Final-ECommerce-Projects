@@ -2,6 +2,8 @@ import type { loginDto } from "./dto/login.dto.js";
 import type { signupDto } from "./dto/signup.dto.js";
 import type { signupResponse } from "./dto/signup.response.js";
 
+export const jwtToken = 'jwtToken';
+
 //api just hanlde its job, state let other component handle
 // done 
 
@@ -18,6 +20,7 @@ export async function loginApi({username, password} : loginDto) {
 
     const jwtResponse = await loginResponse.text();
     console.log("This is the user with the jwt:", jwtResponse);
+    localStorage.setItem(jwtToken, jwtResponse);
     return jwtResponse;
 }
 
@@ -39,3 +42,4 @@ export async function signupApi({fullname, email, username, password} : signupDt
     console.log("The message received is:", clone.message);
     return signupResponse.json();
 }
+
